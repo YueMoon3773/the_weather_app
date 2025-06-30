@@ -37,6 +37,9 @@
     --light_blue_color: #28c6fb;
     --dark_blue_color: #add8e6;
     --soft_dark_blue_color: #b0e0e6;
+
+    --element_bg_color: rgba(236, 236, 236, 0.569);
+    --element_bg_hover_color: rgba(236, 236, 236, 0.769);
 }
 
 /* Reset CSS styles for some elements */
@@ -62,12 +65,271 @@ svg path {
 
 /* Improve line wrapping + avoid text overflows */
 p {
-  overflow-wrap: break-word;
-  word-break: break-word; 
-  text-wrap: pretty;      
+    overflow-wrap: break-word;
+    word-break: break-word;
+    text-wrap: pretty;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  overflow-wrap: break-word;
-  text-wrap: balance;     
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+    text-wrap: balance;
+}
+/* =============================================== */
+/* APP SETUP  */
+/* =============================================== */
+.app {
+    width: 100vw;
+    height: 100vh;
+
+    display: grid;
+    grid-template-rows: 1fr 10fr 0.45fr;
+    grid-template-columns: 1fr;
+}
+
+.bgImg {
+    grid-column: 1 / 2;
+    grid-row: 1 / 4;
+    z-index: 1;
+
+    background-image: url(../img/background/clear-day.png);
+    filter: blur(1.5px);
+}
+
+/* =============================================== */
+/* NAVBAR SETUP  */
+/* =============================================== */
+.navBar {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    z-index: 10;
+
+    font-size: 1rem;
+    padding: 1.4em 0;
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+}
+
+.navBarLeft {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navSearchWrapper {
+    width: 76%;
+    display: grid;
+    grid-template-columns: 8.5fr 0.5fr 0.75fr;
+
+    border: 2px solid var(--gray_color);
+    border-radius: 14px;
+    overflow: hidden;
+    background-color: var(--element_bg_color);
+}
+
+.navSearchInp {
+    outline: none;
+    border-color: transparent;
+
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 0.3em 0.6em;
+    color: var(--black_text);
+    background-color: transparent;
+}
+
+.navSearchInp::placeholder {
+    color: var(--dark_gray_color);
+}
+
+.navSearchWrapper:has(.navSearchInp:invalid) {
+    border-color: var(--dark_red_color);
+}
+
+.navSearchWrapper:has(.navSearchInp:focus) {
+    border-color: var(--dark_gray_color);
+    background-color: var(--element_bg_hover_color);
+}
+
+.navSearchClearWrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.navSearchClearIconEmpty,
+.navSearchClearIconFilled {
+    height: 2.2rem;
+    color: var(--dark_gray_color);
+}
+
+.navSearchClearIconFilled.hide {
+    width: 0;
+}
+
+.navSearchClearWrapper:hover .navSearchClearIconEmpty {
+    width: 0;
+}
+
+.navSearchClearWrapper:hover .navSearchClearIconFilled.hide {
+    width: 100%;
+}
+
+.navSearchBtn {
+    background-color: var(--element_bg_color);
+    filter: brightness(1.06);
+    outline: none;
+    border: none;
+    position: relative;
+}
+
+.navSearchBtn::before {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    border: 1px solid var(--gray_color);
+}
+
+.navSearchBtn:hover {
+    background-color: var(--element_bg_hover_color);
+}
+
+.navSearchBtnIcon {
+    height: 3rem;
+    color: var(--dark_gray_color);
+}
+
+.navSearchBtn:hover .navSearchBtnIcon {
+    color: var(--black_text);
+}
+
+.navBarRight {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navControllerWrapper,
+.navTempWrapper,
+.navSpeedWrapper {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7.6em;
+}
+
+.navTempWrapper,
+.navSpeedWrapper {
+    gap: 0;
+}
+
+.navTempWrapper {
+}
+
+.navTempBtn,
+.navSpeedBtn {
+    font-size: 2rem;
+    color: var(--black_text);
+    font-weight: 600;
+    padding: 0.46em 0.66em;
+    cursor: pointer;
+    user-select: none;
+
+    background-color: var(--element_bg_color);
+    box-shadow:
+        inset 2px 2px 5px rgba(0, 0, 0, 0.36),
+        inset -2px -2px 5px rgba(255, 255, 255, 0.8);
+}
+
+.navTempBtn.active,
+.navSpeedBtn.active {
+    background-color: var(--element_bg_hover_color);
+    box-shadow:
+        -2px -2px 5px rgba(255, 255, 255, 0.6),
+        2px 2px 5px rgba(0, 0, 0, 0.36);
+}
+
+.navTempBtn {
+}
+
+.navSpeedWrapper {
+}
+
+.navSpeedBtn {
+}
+
+.navTempBtn:first-child,
+.navSpeedBtn:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    padding-right: 0.86em;
+}
+
+.navTempBtn:last-child,
+.navSpeedBtn:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding-left: 0.86em;
+}
+
+/* =============================================== */
+/* FOOTER SETUP  */
+/* =============================================== */
+.footer {
+    grid-row: 3 / 4;
+    grid-column: 1 / 3;
+    z-index: 10;
+
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    border-top: 1px solid var(--black_text);
+
+    background-color: var(--element_bg_color);
+    transition-property: all;
+    transition-duration: 360ms;
+}
+
+.footer:hover,
+.footer:has(> *:hover) {
+    background-color: var(--element_bg_hover_color);
+}
+
+.usrName {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+}
+
+.footerIcon {
+    height: 2.4rem;
+}
+
+.usrName,
+.srcLink {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--black_text);
+
+    transition-property: all;
+    transition-duration: 660ms;
+    transition-timing-function: ease;
+}
+
+.usrName:hover,
+.srcLink:hover {
+    font-weight: 600;
+    transform: scale(1.14);
 }
