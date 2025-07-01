@@ -14,16 +14,17 @@
     margin: 0;
     box-sizing: border-box;
     font-size: 62.5%;
-    font-family: 'AR One Sans', 'Roboto+Mono', 'Sono', Arial, Helvetica, sans-serif;
+    font-family: 'AR One Sans', 'Roboto Mono', 'Sono', Arial, Helvetica, sans-serif;
 
     --black_color: #000;
     --white_color: #fff;
     --black_text: #333;
+    --light_black_text: #5a5a5a;
     --white_text: #f5f5f5;
     --snow_white_color: #fffafa;
-    --gray_color: #c0c0c0;
-    --light_gray_color: #eeeeee;
-    --dark_gray_color: #808080;
+    --gray_color: #bdbdbd;
+    --light_gray_color: #dedede;
+    --dark_gray_color: #6d6d6d;
     --light_green_color: #1bff14;
     --green_color: #32de84;
     --dark_green_color: #03c04a;
@@ -38,8 +39,11 @@
     --dark_blue_color: #add8e6;
     --soft_dark_blue_color: #b0e0e6;
 
-    --element_bg_color: rgba(236, 236, 236, 0.569);
-    --element_bg_hover_color: rgba(236, 236, 236, 0.769);
+    --page_two_side_padding: 14em;
+    --element_bg_color: rgba(236, 236, 236, 0.469);
+    --element_bg_hover_color: rgba(236, 236, 236, 0.669);
+    --element_transition: all 360ms ease-in-out;
+    --element_box_shadow: 4px 4px 10px var(--gray_color);
 }
 
 /* Reset CSS styles for some elements */
@@ -80,7 +84,7 @@ h6 {
     text-wrap: balance;
 }
 /* =============================================== */
-/* APP SETUP  */
+/* APP SECTION  */
 /* =============================================== */
 .app {
     width: 100vw;
@@ -97,11 +101,12 @@ h6 {
     z-index: 1;
 
     background-image: url(../img/background/clear-day.png);
-    filter: blur(1.5px);
+    /* background-image: url(../img/background/clear-night.png); */
+    filter: blur(2px);
 }
 
 /* =============================================== */
-/* NAVBAR SETUP  */
+/* NAVBAR SECTION  */
 /* =============================================== */
 .navBar {
     grid-column: 1 / 2;
@@ -109,9 +114,12 @@ h6 {
     z-index: 10;
 
     font-size: 1rem;
-    padding: 1.4em 0;
+    padding: 1.6em;
+    padding-left: var(--page_two_side_padding);
+    padding-right: var(--page_two_side_padding);
     display: grid;
     grid-template-columns: 7fr 3fr;
+    /* gap: 2.6em; */
 }
 
 .navBarLeft {
@@ -121,7 +129,7 @@ h6 {
 }
 
 .navSearchWrapper {
-    width: 76%;
+    width: 100%;
     display: grid;
     grid-template-columns: 8.5fr 0.5fr 0.75fr;
 
@@ -129,6 +137,7 @@ h6 {
     border-radius: 14px;
     overflow: hidden;
     background-color: var(--element_bg_color);
+    transition: var(--element_transition);
 }
 
 .navSearchInp {
@@ -143,7 +152,7 @@ h6 {
 }
 
 .navSearchInp::placeholder {
-    color: var(--dark_gray_color);
+    color: var(--light_black_text);
 }
 
 .navSearchWrapper:has(.navSearchInp:invalid) {
@@ -214,7 +223,7 @@ h6 {
 .navBarRight {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
 .navControllerWrapper,
@@ -224,15 +233,12 @@ h6 {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 7.6em;
+    gap: 4em;
 }
 
 .navTempWrapper,
 .navSpeedWrapper {
     gap: 0;
-}
-
-.navTempWrapper {
 }
 
 .navTempBtn,
@@ -248,6 +254,13 @@ h6 {
     box-shadow:
         inset 2px 2px 5px rgba(0, 0, 0, 0.36),
         inset -2px -2px 5px rgba(255, 255, 255, 0.8);
+    filter: brightness(0.86);
+    transition: var(--element_transition);
+}
+
+.navTempBtn:hover,
+.navSpeedBtn:hover {
+    filter: brightness(1);
 }
 
 .navTempBtn.active,
@@ -256,6 +269,7 @@ h6 {
     box-shadow:
         -2px -2px 5px rgba(255, 255, 255, 0.6),
         2px 2px 5px rgba(0, 0, 0, 0.36);
+    filter: brightness(1.06);
 }
 
 .navTempBtn {
@@ -282,7 +296,285 @@ h6 {
 }
 
 /* =============================================== */
-/* FOOTER SETUP  */
+/* CONTENT SECTION  */
+/* =============================================== */
+.content {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1rem;
+    padding: 0.6em 14em 0;
+}
+
+.currentBrief {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    gap: 1.6em;
+}
+
+/* =============================================== */
+/* GENERAL CURRENT BRIEF SECTION  */
+/* =============================================== */
+.currentGeneral {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    /* background-color: var(--element_bg_color); */
+    transition: var(--element_transition);
+    overflow: hidden;
+    font-size: 1rem;
+    border-radius: 1.6em;
+}
+
+/* .currentGeneral:hover {
+    background-color: var(--element_bg_hover_color);
+} */
+
+.generalLeft {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    gap: 1.4em;
+}
+
+.generalIconWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.generalIcon {
+    font-size: 1rem;
+    height: clamp(23.6em, 24em, 24.4em);
+    aspect-ratio: 1 / 1;
+}
+
+.generalLeftDetails {
+    height: 100%;
+    font-size: 1rem;
+    display: grid;
+    grid-template-rows: 2fr 0.75fr 0.75fr;
+    gap: 0.6em;
+}
+
+.generalLeftTemp,
+.generalTempDegreeIcon,
+.generalTempDegree {
+    font-size: 10.6rem;
+    font-weight: 900;
+    margin: 0;
+    color: var(--black_text);
+    cursor: default;
+}
+
+.generalTempDegree {
+    text-transform: uppercase;
+    margin-left: -0.26em;
+}
+
+.generalCondition,
+.generalAddress,
+.generalFeelLikeText,
+.generalFeelLikeTemp,
+.generalFeelLikeTempIcon,
+.generalFeelLikeTempDegree,
+.generalDateText {
+    font-size: 2.6rem;
+    font-weight: 600;
+    color: var(--light_black_text);
+
+    align-self: center;
+    cursor: default;
+}
+
+.generalRight {
+    height: 100%;
+    font-size: 1rem;
+    display: grid;
+    grid-template-rows: 2fr 0.75fr 0.75fr;
+    gap: 0.6em;
+}
+
+.generalRightTempWrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 1rem;
+    gap: 5.6em;
+}
+
+.generalTempRangeWrapper {
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.4em;
+}
+
+.generalTempRangeWrapper:first-child:hover .generalTempRangeIcon path,
+.generalTempRangeWrapper:first-child:hover .generalTempRangeVal,
+.generalTempRangeWrapper:first-child:hover .generalTempRangeValIcon,
+.generalTempRangeWrapper:first-child:hover .generalTempRangeDegree {
+    color: var(--blue_color);
+    -webkit-text-stroke-width: 0.25px;
+    -webkit-text-stroke-color: var(--snow_white_color);
+    stroke: var(--snow_white_color);
+    stroke-width: 0.25px;
+    stroke-linejoin: round;
+}
+
+.generalTempRangeWrapper:last-child:hover .generalTempRangeIcon path,
+.generalTempRangeWrapper:last-child:hover .generalTempRangeVal,
+.generalTempRangeWrapper:last-child:hover .generalTempRangeValIcon,
+.generalTempRangeWrapper:last-child:hover .generalTempRangeDegree {
+    color: var(--light_red_color);
+    -webkit-text-stroke-width: 0.25px;
+    -webkit-text-stroke-color: var(--snow_white_color);
+    stroke: var(--snow_white_color);
+    stroke-width: 0.25px;
+    stroke-linejoin: round;
+}
+
+.generalTempRangeText {
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: var(--black_text);
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    cursor: default;
+}
+
+.generalTempRangeIcon {
+    height: 2.6rem;
+    color: var(--black_text);
+    transition: var(--element_transition);
+}
+
+.generalTempRangeVal,
+.generalTempRangeValIcon,
+.generalTempRangeDegree {
+    font-size: 4.6rem;
+    color: var(--black_text);
+    font-weight: 900;
+    cursor: default;
+    transition: var(--element_transition);
+}
+
+.generalTempRangeDegree {
+    text-transform: uppercase;
+    margin-left: -0.3em;
+}
+
+.generalFeelLikeText,
+.generalDateText {
+    justify-self: self-end;
+}
+
+.generalFeelLikeTempDegree {
+    text-transform: uppercase;
+    margin-left: -0.26em;
+}
+
+/* =============================================== */
+/* CURRENT DETAILS SECTION  */
+/* =============================================== */
+.currentDetails {
+    width: 100%;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.2em;
+}
+
+.currentDetailsCard {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    gap: 1.2em;
+
+    padding: 0.8em 0.4em;
+    width: max(14%, 190px);
+    border-radius: 12px;
+    background-color: var(--element_bg_color);
+    transition: var(--element_transition);
+}
+
+.currentDetailsCard:hover {
+    background-color: var(--element_bg_hover_color);
+    transform: translateY(-2px);
+    box-shadow: var(--element_box_shadow);
+}
+
+.detailsCardIconWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.detailsCardIcon {
+    font-size: 1rem;
+    height: 2.76em;
+    stroke: var(--snow_white_color);
+    stroke-width: 0.025px;
+    stroke-linejoin: round;
+}
+
+.detailsCardContent {
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.8em;
+    cursor: default;
+}
+
+.detailsCardTitle {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--black_text);
+}
+
+.detailsCardValue,
+.detailsCardUnit {
+    font-size: 2.2rem;
+    color: var(--black_text);
+    font-weight: 700;
+}
+
+.detailsCardUnit {
+    margin-left: 0.2em;
+}
+
+.generalLeftTemp.night,
+.generalTempDegreeIcon.night,
+.generalTempDegree.night,
+.generalCondition.night,
+.generalAddress.night,
+.generalCondition.night,
+.generalAddress.night,
+.generalFeelLikeText.night,
+.generalFeelLikeTemp.night,
+.generalFeelLikeTempIcon.night,
+.generalFeelLikeTempDegree.night,
+.generalDateText.night .detailsCardTitle.night {
+    color: var(--white_text);
+}
+/* =============================================== */
+/* FOOTER SECTION  */
 /* =============================================== */
 .footer {
     grid-row: 3 / 4;
@@ -294,11 +586,9 @@ h6 {
     justify-content: center;
     align-items: center;
     gap: 2em;
-    border-top: 1px solid var(--black_text);
 
     background-color: var(--element_bg_color);
-    transition-property: all;
-    transition-duration: 360ms;
+    transition: var(--element_transition);
 }
 
 .footer:hover,
@@ -323,9 +613,7 @@ h6 {
     font-weight: 500;
     color: var(--black_text);
 
-    transition-property: all;
-    transition-duration: 660ms;
-    transition-timing-function: ease;
+    transition: all 660ms ease-in-out;
 }
 
 .usrName:hover,
