@@ -41,9 +41,12 @@
 
     --page_two_side_padding: 14em;
     --element_bg_color: rgba(236, 236, 236, 0.469);
+    --element_night_bg_color: rgba(136, 136, 136, 0.369);
     --element_bg_hover_color: rgba(236, 236, 236, 0.669);
+    --element_night_bg_hover_color: rgba(166, 166, 166, 0.569);
     --element_transition: all 360ms ease-in-out;
     --element_box_shadow: 4px 4px 10px var(--gray_color);
+    --element_night_box_shadow: 4px 4px 10px var(--dark_gray_color);
 }
 
 /* Reset CSS styles for some elements */
@@ -68,7 +71,8 @@ svg path {
 }
 
 /* Improve line wrapping + avoid text overflows */
-p {
+p,
+span {
     overflow-wrap: break-word;
     word-break: break-word;
     text-wrap: pretty;
@@ -100,8 +104,12 @@ h6 {
     grid-row: 1 / 4;
     z-index: 1;
 
-    background-image: url(../img/background/clear-day.png);
-    /* background-image: url(../img/background/clear-night.png); */
+    /* background-image: url(../img/background/clear-day.png); */
+    background-image: url(../img/background/clear-night.png);
+    /* background-image: url(../img/background/wind.png); */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     filter: blur(2px);
 }
 
@@ -118,8 +126,8 @@ h6 {
     padding-left: var(--page_two_side_padding);
     padding-right: var(--page_two_side_padding);
     display: grid;
-    grid-template-columns: 7fr 3fr;
-    /* gap: 2.6em; */
+    grid-template-columns: 5fr 3fr;
+    gap: 2.6em;
 }
 
 .navBarLeft {
@@ -279,6 +287,24 @@ h6 {
 }
 
 .navSpeedBtn {
+}
+
+.navLocationWrapper {
+    font-size: 1rem;
+    padding: 0.4em;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: var(--element_bg_color);
+    transition: var(--element_transition);
+}
+
+.navLocationIcon {
+    color: var(--black_text);
+    height: 3rem;
+}
+
+.navLocationWrapper:hover {
+    background-color: var(--element_bg_hover_color);
 }
 
 .navTempBtn:first-child,
@@ -509,7 +535,7 @@ h6 {
     font-size: 1rem;
     gap: 1.2em;
 
-    padding: 0.8em 0.4em;
+    padding: 0.8em 0.66em;
     width: max(14%, 190px);
     border-radius: 12px;
     background-color: var(--element_bg_color);
@@ -591,8 +617,8 @@ h6 {
     width: 100%;
     display: grid;
     justify-content: space-between;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 12.6%));
-    gap: 1em;
+    grid-template-columns: repeat(auto-fit, minmax(146px, 1fr));
+    gap: 1.6em;
 }
 
 .hourCard {
@@ -675,7 +701,7 @@ h6 {
 /* WEEK SECTION  */
 /* =============================================== */
 .weekBrief {
-    /* overflow-x: scroll; */
+    /* gap: 1.6em; */
 }
 
 .weekCardWrapper {
@@ -683,10 +709,8 @@ h6 {
     width: 100%;
     display: grid;
     justify-content: space-between;
-    grid-template-columns: repeat(auto-fit, minmax(360px, 32%));
-    gap: 1em;
-
-    overflow-x: auto;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.6em;
 }
 
 .weekCard {
@@ -783,24 +807,6 @@ h6 {
 }
 
 /* =============================================== */
-/* NIGHT SECTION  */
-/* =============================================== */
-.generalLeftTemp.night,
-.generalTempDegreeIcon.night,
-.generalTempDegree.night,
-.generalCondition.night,
-.generalAddress.night,
-.generalCondition.night,
-.generalAddress.night,
-.generalFeelLikeText.night,
-.generalFeelLikeTemp.night,
-.generalFeelLikeTempIcon.night,
-.generalFeelLikeTempDegree.night,
-.generalDateText.night .detailsCardTitle.night {
-    color: var(--white_text);
-}
-
-/* =============================================== */
 /* FOOTER SECTION  */
 /* =============================================== */
 .footer {
@@ -847,4 +853,47 @@ h6 {
 .srcLink:hover {
     font-weight: 600;
     transform: scale(1.14);
+}
+
+/* =============================================== */
+/* NIGHT THEME SECTION  */
+/* =============================================== */
+.navBar.night .navSearchInp::placeholder,
+.navBar.night .navSearchClearIconEmpty,
+.navBar.night .navSearchClearIconFilled,
+.navBar.night .navSearchBtnIcon,
+.navBar.night .navBarRight > * > * > *,
+.generalLeft.night > * > *,
+.generalLeft.night > * > * > *,
+.generalRight.night > *,
+.generalRight.night > * > *,
+.generalRight.night > * > * > *,
+.generalRight.night > * > * > * > *,
+.currentDetails.night > * > * > span,
+.currentDetails.night > * > * > div > *,
+.hoursBrief.night > *,
+.hoursBrief.night > * > * > *,
+.hoursBrief.night > * > * > * > *,
+.weekBrief.night > *,
+.weekBrief.night > * > * > * > * > *,
+.weekBrief.night > * > * > * > * > * > *,
+.weekBrief.night > * > * > * > * > * > * > *,
+.footer.night > * {
+    color: var(--white_text);
+    border-color: var(--snow_white_color);
+}
+
+.currentDetails.night > *,
+.hoursBrief.night > * > *,
+.weekBrief.night > * > *,
+.footer.night {
+    background-color: var(--element_night_bg_color);
+}
+
+.currentDetails.night > *:hover,
+.hoursBrief.night > * > *:hover,
+.weekBrief.night > * > *:hover,
+.footer.night:hover {
+    background-color: var(--element_night_bg_hover_color);
+    box-shadow: var(--element_night_box_shadow);
 }

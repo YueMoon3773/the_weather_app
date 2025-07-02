@@ -20,7 +20,7 @@
             <div class="bgImg"></div>
 
             <!-- NAVBAR SECTION  -->
-            <nav class="navBar">
+            <nav class="navBar night">
                 <div class="navBarLeft">
                     <div class="navSearchWrapper">
                         <input type="text" class="navSearchInp" placeholder="Sydney, Australia" />
@@ -58,12 +58,21 @@
                     <div class="navControllerWrapper">
                         <div class="navTempWrapper">
                             <span class="navTempBtn" data-type="celsius">°C</span>
-                            <span class="navTempBtn active" data-type="Fahrenheit">°F</span>
+                            <span class="navTempBtn active" data-type="fahrenheit">°F</span>
                         </div>
 
                         <div class="navSpeedWrapper">
                             <span class="navSpeedBtn active" data-type="mph">mph</span>
                             <span class="navSpeedBtn" data-type="km/h">km/h</span>
+                        </div>
+
+                        <div class="navLocationWrapper">
+                            <svg class="navLocationIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <title>Get your current location</title>
+                                <path
+                                    d="M12,2C15.31,2 18,4.66 18,7.95C18,12.41 12,19 12,19C12,19 6,12.41 6,7.95C6,4.66 8.69,2 12,2M12,6A2,2 0 0,0 10,8A2,2 0 0,0 12,10A2,2 0 0,0 14,8A2,2 0 0,0 12,6M20,19C20,21.21 16.42,23 12,23C7.58,23 4,21.21 4,19C4,17.71 5.22,16.56 7.11,15.83L7.75,16.74C6.67,17.19 6,17.81 6,18.5C6,19.88 8.69,21 12,21C15.31,21 18,19.88 18,18.5C18,17.81 17.33,17.19 16.25,16.74L16.89,15.83C18.78,16.56 20,17.71 20,19Z"
+                                />
+                            </svg>
                         </div>
                     </div>
                 </div>
@@ -74,7 +83,7 @@
                 <div class="currentBrief">
                     <!-- GENERAL CURRENT BRIEF SECTION  -->
                     <div class="currentGeneral">
-                        <div class="generalLeft">
+                        <div class="generalLeft night">
                             <div class="generalIconWrapper">
                                 <img src="./img/svg_icon/clear-day.svg" alt="" class="generalIcon" />
                             </div>
@@ -90,7 +99,7 @@
                             </div>
                         </div>
 
-                        <div class="generalRight">
+                        <div class="generalRight night">
                             <div class="generalRightTempWrapper">
                                 <div class="generalTempRangeWrapper">
                                     <span class="generalTempRangeText">
@@ -106,7 +115,7 @@
                                         </svg>
                                         Min
                                     </span>
-                                    <h2 class="generalTempRangeVal">
+                                    <h2 data-type="minTemp" class="generalTempRangeVal">
                                         26.7
                                         <span class="generalTempRangeValIcon">°</span>
                                         <span class="generalTempRangeDegree">f</span>
@@ -127,7 +136,7 @@
                                         </svg>
                                         Max
                                     </span>
-                                    <h2 class="generalTempRangeVal">
+                                    <h2 data-type="maxTemp" class="generalTempRangeVal">
                                         30.5
                                         <span class="generalTempRangeValIcon">°</span>
                                         <span class="generalTempRangeDegree">c</span>
@@ -147,7 +156,7 @@
                         </div>
                     </div>
 
-                    <div class="currentDetails">
+                    <div class="currentDetails night">
                         <div data-type="precipprob" class="currentDetailsCard">
                             <div data-type="precipprob" class="detailsCardIconWrapper">
                                 <svg
@@ -301,7 +310,7 @@
                 </div>
 
                 <!-- HOURS BRIEF SECTION  -->
-                <div class="hoursBrief">
+                <div class="hoursBrief night">
                     <h2 class="hourBriefTitle">Hourly</h2>
 
                     <div class="hourCardWrapper">
@@ -441,7 +450,7 @@
                 </div>
 
                 <!-- WEEK BRIEF SECTION  -->
-                <div class="weekBrief">
+                <div class="weekBrief night">
                     <h2 class="weekBriefTitle">This week</h2>
 
                     <div class="weekCardWrapper">
@@ -560,7 +569,7 @@
             </div>
 
             <!-- FOOTER SECTION  -->
-            <footer class="footer">
+            <footer class="footer night">
                 <a href="https://github.com/YueMoon3773" class="usrName" target="_blank" rel="noopener noreferrer">
                     <svg class="footerIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <title>Github icon</title>
