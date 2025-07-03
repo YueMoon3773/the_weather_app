@@ -41,12 +41,12 @@
 
     --page_two_side_padding: 14em;
     --element_bg_color: rgba(236, 236, 236, 0.469);
-    --element_night_bg_color: rgba(136, 136, 136, 0.369);
+    --element_night_bg_color: rgba(126, 126, 126, 0.369);
     --element_bg_hover_color: rgba(236, 236, 236, 0.669);
-    --element_night_bg_hover_color: rgba(166, 166, 166, 0.569);
+    --element_night_bg_hover_color: rgba(146, 146, 146, 0.569);
     --element_transition: all 360ms ease-in-out;
     --element_box_shadow: 4px 4px 10px var(--gray_color);
-    --element_night_box_shadow: 4px 4px 10px var(--dark_gray_color);
+    --element_night_box_shadow: 4px 4px 10px var(--light_black_text);
 }
 
 /* Reset CSS styles for some elements */
@@ -99,18 +99,22 @@ h6 {
     grid-template-columns: 1fr;
 }
 
-.bgImg {
+.bgImgWrapper {
     grid-column: 1 / 2;
     grid-row: 1 / 4;
     z-index: 1;
 
-    /* background-image: url(../img/background/clear-day.png); */
-    background-image: url(../img/background/clear-night.png);
-    /* background-image: url(../img/background/wind.png); */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    filter: blur(2px);
+    display: flex;
+    justify-content: center;
+}
+
+.bgImg {
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-position: center;
+    object-fit: cover;
+    filter: blur(1.5px);
 }
 
 /* =============================================== */
@@ -334,7 +338,7 @@ h6 {
     align-items: center;
     font-size: 1rem;
     padding: 0 14em;
-    padding-bottom: clamp(0, 0.6em, 1em);
+    /* padding-bottom: clamp(0, 0.6em, 1em); */
     padding-bottom: 1em;
     overflow-y: auto;
 }
@@ -883,6 +887,15 @@ h6 {
     border-color: var(--snow_white_color);
 }
 
+.navBar.night .navSearchWrapper {
+    background-color: var(--element_night_bg_color);
+}
+
+.navBar.night .navSearchWrapper:has(.navSearchInp:focus) {
+    background-color: var(--element_night_bg_hover_color);
+    border-color: var(--snow_white_color);
+}
+
 .currentDetails.night > *,
 .hoursBrief.night > * > *,
 .weekBrief.night > * > *,
@@ -896,4 +909,23 @@ h6 {
 .footer.night:hover {
     background-color: var(--element_night_bg_hover_color);
     box-shadow: var(--element_night_box_shadow);
+}
+
+/* =============================================== */
+/* IMPROVE VISUAL SECTION  */
+/* =============================================== */
+.generalCondition,
+.generalAddress,
+.generalFeelLikeText,
+.generalDateText {
+    transition: var(--element_transition);
+}
+
+.generalCondition:hover,
+.generalAddress:hover,
+.generalFeelLikeText:hover,
+.generalDateText:hover {
+    font-weight: 700;
+    -webkit-text-stroke-width: 0.25px;
+    -webkit-text-stroke-color: var(--snow_white_color);
 }
