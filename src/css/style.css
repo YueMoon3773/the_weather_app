@@ -403,7 +403,7 @@ h6 {
 
 .generalLeftTemp,
 .generalTempDegreeIcon,
-.generalTempDegree {
+.generalTempDegreeUnit {
     font-size: 10.6rem;
     font-weight: 900;
     margin: 0;
@@ -411,7 +411,7 @@ h6 {
     cursor: default;
 }
 
-.generalTempDegree {
+.generalTempDegreeUnit {
     text-transform: uppercase;
     margin-left: -0.26em;
 }
@@ -421,7 +421,7 @@ h6 {
 .generalFeelLikeText,
 .generalFeelLikeTemp,
 .generalFeelLikeTempIcon,
-.generalFeelLikeTempDegree,
+.generalFeelLikeTempDegreeUnit,
 .generalDateText {
     font-size: 2.4rem;
     font-weight: 600;
@@ -459,7 +459,7 @@ h6 {
 .generalTempRangeWrapper:first-child:hover .generalTempRangeIcon path,
 .generalTempRangeWrapper:first-child:hover .generalTempRangeVal,
 .generalTempRangeWrapper:first-child:hover .generalTempRangeValIcon,
-.generalTempRangeWrapper:first-child:hover .generalTempRangeDegree {
+.generalTempRangeWrapper:first-child:hover .generalTempRangeDegreeUnit {
     color: var(--blue_color);
     -webkit-text-stroke-width: 0.25px;
     -webkit-text-stroke-color: var(--snow_white_color);
@@ -471,7 +471,7 @@ h6 {
 .generalTempRangeWrapper:last-child:hover .generalTempRangeIcon path,
 .generalTempRangeWrapper:last-child:hover .generalTempRangeVal,
 .generalTempRangeWrapper:last-child:hover .generalTempRangeValIcon,
-.generalTempRangeWrapper:last-child:hover .generalTempRangeDegree {
+.generalTempRangeWrapper:last-child:hover .generalTempRangeDegreeUnit {
     color: var(--light_red_color);
     -webkit-text-stroke-width: 0.25px;
     -webkit-text-stroke-color: var(--snow_white_color);
@@ -498,7 +498,7 @@ h6 {
 
 .generalTempRangeVal,
 .generalTempRangeValIcon,
-.generalTempRangeDegree {
+.generalTempRangeDegreeUnit {
     font-size: 4.6rem;
     color: var(--black_text);
     font-weight: 900;
@@ -506,7 +506,7 @@ h6 {
     transition: var(--element_transition);
 }
 
-.generalTempRangeDegree {
+.generalTempRangeDegreeUnit {
     text-transform: uppercase;
     margin-left: -0.3em;
 }
@@ -516,7 +516,7 @@ h6 {
     justify-self: self-end;
 }
 
-.generalFeelLikeTempDegree {
+.generalFeelLikeTempDegreeUnit {
     text-transform: uppercase;
     margin-left: -0.26em;
 }
@@ -653,17 +653,11 @@ h6 {
     justify-content: center;
 }
 
-.hourCardTimeValue,
-.hourCardTimeUnit {
+.hourCardTimeValue {
     font-size: 2rem;
     color: var(--black_text);
     font-weight: 800;
     cursor: default;
-}
-
-.hourCardTimeUnit {
-    text-transform: uppercase;
-    margin-left: 0.2em;
 }
 
 .hourCardIconWrapper {
@@ -803,10 +797,11 @@ h6 {
 }
 
 .weekCardBodyTempDegreeIcon {
+    margin-left: 0.26em;
 }
 
 .weekCardBodyTempDegree {
-    margin-left: -0.26em;
+    /* margin-left: -0.26em; */
     text-transform: uppercase;
 }
 
@@ -862,7 +857,6 @@ h6 {
 /* =============================================== */
 /* NIGHT THEME SECTION  */
 /* =============================================== */
-.navBar.night .navSearchInp::placeholder,
 .navBar.night .navSearchClearIconEmpty,
 .navBar.night .navSearchClearIconFilled,
 .navBar.night .navSearchBtnIcon,
@@ -885,6 +879,14 @@ h6 {
 .footer.night > * {
     color: var(--white_text);
     border-color: var(--snow_white_color);
+}
+
+.navBar.night .navSearchInp {
+    color: var(--white_text);
+}
+
+.navBar.night .navSearchInp::placeholder {
+    color: var(--gray_color);
 }
 
 .navBar.night .navSearchWrapper {

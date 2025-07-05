@@ -1,4 +1,11 @@
 import '../css/style.css';
+import pageControllerStatusHandler from './controllerStatusHandler.js';
+import { updateGeneralContent, renderWeekCards } from './updatePageContent.js';
+
+// import { hourCardConstructor } from './updatePageContent.js';
+// import { weekCardConstructor } from './updatePageContent.js';
+// hourCardConstructor('', '04:48:35', '', '', '');
+// weekCardConstructor('', '', '2025-07-02', '', '', '');
 
 const bgImg = document.querySelector('.bgImg');
 // NAV BAR ELEMENTS
@@ -6,35 +13,40 @@ const navSearchInp = document.querySelector('.navSearchInp');
 const navSearchClearBtn = document.querySelector('.navSearchClearWrapper');
 const navSearchBtn = document.querySelector('.navSearchBtn');
 
-const navTempBtnCelsius = document.querySelector('.navTempBtn[data-type="celsius"]');
-const navTempBtnFahrenheit = document.querySelector('.navTempBtn[data-type="fahrenheit"]');
-const navSpeedBtnMph = document.querySelector('.navSpeedBtn[data-type="mph"]');
-const navSpeedBtnKmh = document.querySelector('.navSpeedBtn[data-type="km/h"]');
-const navLocationBtn = document.querySelector('.navLocationWrapper');
+export const navTempBtnCelsius = document.querySelector('.navTempBtn[data-type="celsius"]');
+export const navTempBtnFahrenheit = document.querySelector('.navTempBtn[data-type="fahrenheit"]');
+export const navSpeedBtnMph = document.querySelector('.navSpeedBtn[data-type="mph"]');
+export const navSpeedBtnKmh = document.querySelector('.navSpeedBtn[data-type="km/h"]');
+export const navLocationBtn = document.querySelector('.navLocationWrapper');
 
 // CURRENT BRIEF ELEMENTS
 // CURRENT GENERAL ELEMENTS
-const generalIcon = document.querySelector('.generalIcon');
-const generalLeftTemp = document.querySelector('.generalLeftTemp');
-const generalTempDegree = document.querySelector('.generalTempDegree');
-const generalCondition = document.querySelector('.generalCondition');
-const generalAddress = document.querySelector('.generalAddress');
+export const generalIcon = document.querySelector('.generalIcon');
+export const generalLeftTempValue = document.querySelector('.generalLeftTemp');
+export const generalTempDegreeUnit = document.querySelector('.generalTempDegreeUnit');
+export const generalCondition = document.querySelector('.generalCondition');
+export const generalAddress = document.querySelector('.generalAddress');
 
-const generalTempMinRange = document.querySelector('.generalTempRangeVal[data-type="minTemp"]');
-const generalTempMaxRange = document.querySelector('.generalTempRangeVal[data-type="maxTemp"]');
-const generalTempRangeDegree = document.querySelectorAll('.generalTempRangeDegree');
+export const generalTempMinRange = document.querySelector('.generalTempRangeVal[data-type="minTemp"]');
+export const generalTempMaxRange = document.querySelector('.generalTempRangeVal[data-type="maxTemp"]');
+export const generalTempRangeDegreeUnit = document.querySelectorAll('.generalTempRangeDegreeUnit');
 
-const generalFeelLikeTemp = document.querySelector('.generalFeelLikeTemp');
-const generalFeelLikeTempDegree = document.querySelector('.generalFeelLikeTempDegree');
-const generalDateText = document.querySelector('.generalDateText');
+export const generalFeelLikeTemp = document.querySelector('.generalFeelLikeTemp');
+export const generalFeelLikeTempDegreeUnit = document.querySelector('.generalFeelLikeTempDegreeUnit');
+export const generalDateText = document.querySelector('.generalDateText');
 
 // CURRENT DETAILS ELEMENTS
-const detailsCardRainValue = document.querySelector('.detailsCardValue[data-type="precipprob"]');
-const detailsCardUvValue = document.querySelector('.detailsCardValue[data-type="uvindex"]');
-const detailsCardHumidityValue = document.querySelector('.detailsCardValue[data-type="humidity"]');
-const detailsCardWindgustValue = document.querySelector('.detailsCardValue[data-type="windgust"]');
-const detailsCardSunriseValue = document.querySelector('.detailsCardValue[data-type="sunrise"]');
-const detailsCardSunsetValue = document.querySelector('.detailsCardValue[data-type="sunset"]');
+export const detailsCardRainValue = document.querySelector('.detailsCardValue[data-type="precipprob"]');
+export const detailsCardUvValue = document.querySelector('.detailsCardValue[data-type="uvindex"]');
+export const detailsCardHumidityValue = document.querySelector('.detailsCardValue[data-type="humidity"]');
+export const detailsCardWindgustValue = document.querySelector('.detailsCardValue[data-type="windgust"]');
+export const detailsCardWindgustUnit = document.querySelector('.detailsCardUnit[data-type="windgust"]');
+export const detailsCardSunriseValue = document.querySelector('.detailsCardValue[data-type="sunrise"]');
+export const detailsCardSunsetValue = document.querySelector('.detailsCardValue[data-type="sunset"]');
+
+// HOUR / WEEK ELEMENTS
+export const hourCardWrapper = document.querySelector('.hourCardWrapper');
+export const weekCardWrapper = document.querySelector('.weekCardWrapper');
 
 // THEME ELEMENTS
 export const navBar = document.querySelector('.navBar');
@@ -47,22 +59,6 @@ export const footer = document.querySelector('.footer');
 
 // VARIABLES DEFINITION
 const APIKey = 'TNR5YYWZYAT8YJ8X2M8P8EQ47';
-
-const nightThemeConditions = [
-    'clear-night',
-    'cloudy',
-    'partly-cloudy-night',
-    'rain-snow-showers-night',
-    'showers-night',
-    'snow-showers-night',
-    'thunder',
-    'thunder-rain',
-    'thunder-showers-day',
-    'thunder-showers-night',
-    'wind',
-];
-
-const themeElements = [navBar, generalLeft, generalRight, currentDetails, hoursBrief, weekBrief, footer];
 
 /**
  * Return the needed URL for each request.
@@ -97,16 +93,20 @@ const URLHandler = (APIkey, type = '', simpleLocation = '', longitude = '', lati
  * @returns {Promise} A completed data retrieved from URL by API.
  */
 const getDataFromAPI = async (APIkey, type = '', simpleLocation = '', longitude = '', latitude = '') => {
-    const URL = URLHandler(APIkey, type, simpleLocation, longitude, latitude);
+    let URL;
 
     try {
+        URL = URLHandler(APIkey, type, simpleLocation, longitude, latitude);
         const res = await fetch(URL);
         const data = await res.json();
         return data;
     } catch (e) {
         console.log('getDataFromAPI: ', e);
         // console.log('getDataFromAPI msg: ', e.message);
-        return e;
+        URL = URLHandler(APIkey);
+        const res = await fetch(URL);
+        const data = await res.json();
+        return data;
     }
 };
 
@@ -137,14 +137,11 @@ navSearchBtn.addEventListener('click', async () => {
         alert('Please fill the location before search.');
         return;
     } else {
-        try {
-            const APIdata = await handleSearchLocationFromSearchInp(searchInpValue);
-            console.log({ APIdata });
-            console.log(APIdata.currentConditions);
-        } catch (e) {
-            // console.log('listener err: ', e);
-            // console.log('listener err msg: ', e.message);
-            console.log(e);
-        }
+        const APIdata = await handleSearchLocationFromSearchInp(searchInpValue);
+        console.log(APIdata);
+        updateGeneralContent('c', 'km/h', APIdata);
+        renderWeekCards('c', APIdata);
+        // console.log(APIdata.currentConditions);
+        // generalLeftTemp.firstChild.nodeValue = currentConditions.temp;
     }
 });

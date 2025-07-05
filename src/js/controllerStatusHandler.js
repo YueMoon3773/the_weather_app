@@ -1,5 +1,3 @@
-import { navBar, generalLeft, generalRight, currentDetails, hoursBrief, weekBrief, footer } from './index.js';
-
 const pageControllerStatusHandler = () => {
     const pageControllerStatusList = {
         tempUnit: ['c', 'f'],
