@@ -25,8 +25,9 @@ import dateTimeFormatter from './formatDateTime.js';
 import { getWeatherIcon, getBgImage } from './getWeatherIconAndBgImg.js';
 import unitConverter from './unitConverter.js';
 import pageControllerStatusHandler from './controllerStatusHandler.js';
+import { verifyCurrentDayHasEnoughHours, getNearestHourIndex } from './supportrRenderHours.js';
 
-export const hourCardConstructor = (parentElement, time, imgSrc, temp, tempUnit) => {
+const hourCardConstructor = (parentElement, time, imgSrc, temp, tempUnit) => {
     const formattedTime = dateTimeFormatter().getHourOnly(time);
 
     // Create and append elements
@@ -67,7 +68,7 @@ export const hourCardConstructor = (parentElement, time, imgSrc, temp, tempUnit)
     parentElement.appendChild(hourCard);
 };
 
-export const weekCardConstructor = (parentElement, imgSrc, date, minTemp, maxTemp, tempUnit) => {
+const weekCardConstructor = (parentElement, imgSrc, date, minTemp, maxTemp, tempUnit) => {
     const dayOfWeek = dateTimeFormatter().getDayOfWeek(date);
     const dateAndMonth = dateTimeFormatter().getDateAndMonth(date);
 
@@ -140,11 +141,11 @@ export const weekCardConstructor = (parentElement, imgSrc, date, minTemp, maxTem
     parentElement.appendChild(weekCard);
 };
 
-export const updateGeneralContent = (tempUnit, speedUnit, APIdata) => {
+const updateGeneralContent = (tempUnit, speedUnit, APIdata) => {
     // update current general part
     generalIcon.src = getWeatherIcon(APIdata.currentConditions.icon);
-    // generalIcon.src = `./img/svg_icon/${APIdata.currentConditions.icon}.svg`;
 
+    // update temperature based on the tempUnit
     if (tempUnit === 'c') {
         generalLeftTempValue.firstChild.nodeValue = APIdata.currentConditions.temp;
         generalTempMinRange.firstChild.nodeValue = APIdata.days[0].tempmin;
@@ -176,7 +177,7 @@ export const updateGeneralContent = (tempUnit, speedUnit, APIdata) => {
     detailsCardSunsetValue.textContent = dateTimeFormatter().getHourAndMinute(APIdata.currentConditions.sunset);
 };
 
-export const renderWeekCards = (tempUnit, APIdata) => {
+const renderWeekCards = (tempUnit, APIdata) => {
     weekCardWrapper.innerHTML = '';
 
     for (let i = 1; i < 4; i++) {
@@ -203,3 +204,57 @@ export const renderWeekCards = (tempUnit, APIdata) => {
         }
     }
 };
+
+const renderHourCards = (tempUnit, APIdata) => {
+    hourCardWrapper.innerHTML = '';
+
+    const nearestHour = dateTimeFormatter().getNearestHour(APIdata.currentConditions.datetime);
+    // console.log({ nearestHour });   //{nearestHour: '13:00:00'}
+    const verifiedNearestHour = verifyCurrentDayHasEnoughHours(nearestHour);
+    // console.log({ verifiedNearestHour });   //{isPass: true, hoursNeeded: 0}
+    const nearestHourIndex = getNearestHourIndex(nearestHour, APIdata.days[0].hours);
+    // console.log({ nearestHourIndex });  //{nearestHourIndex: 13}
+
+    if (verifiedNearestHour.isPass) {
+        for (let i = nearestHourIndex; i < nearestHourIndex + 7; i++) {
+            hourCardConstructor(
+                hourCardWrapper,
+                APIdata.days[0].hours[i].datetime,
+                getWeatherIcon(APIdata.days[0].hours[i].icon),
+                APIdata.days[0].hours[i].temp,
+                tempUnit,
+            );
+        }
+    } else if (!verifiedNearestHour.isPass && verifiedNearestHour.hoursNeeded === 7) {
+        for (let i = 0; i < verifiedNearestHour.hoursNeeded; i++) {
+            hourCardConstructor(
+                hourCardWrapper,
+                APIdata.days[1].hours[i].datetime,
+                getWeatherIcon(APIdata.days[1].hours[i].icon),
+                APIdata.days[1].hours[i].temp,
+                tempUnit,
+            );
+        }
+    } else {
+        for (let i = nearestHourIndex; i < 24; i++) {
+            hourCardConstructor(
+                hourCardWrapper,
+                APIdata.days[0].hours[i].datetime,
+                getWeatherIcon(APIdata.days[0].hours[i].icon),
+                APIdata.days[0].hours[i].temp,
+                tempUnit,
+            );
+        }
+        for (let i = 0; i < verifiedNearestHour.hoursNeeded - 1; i++) {
+            hourCardConstructor(
+                hourCardWrapper,
+                APIdata.days[1].hours[i].datetime,
+                getWeatherIcon(APIdata.days[1].hours[i].icon),
+                APIdata.days[1].hours[i].temp,
+                tempUnit,
+            );
+        }
+    }
+};
+
+export { updateGeneralContent, renderHourCards, renderWeekCards };

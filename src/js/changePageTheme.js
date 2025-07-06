@@ -14,6 +14,8 @@ const themeHandler = () => {
         'thunder-showers-night',
         'wind',
     ];
+    const getNightThemeConditions = () => nightThemeConditions;
+
     const elementList = [navBar, generalLeft, generalRight, currentDetails, hoursBrief, weekBrief, footer];
 
     const changeToNightTheme = () => {
@@ -33,6 +35,7 @@ const themeHandler = () => {
     };
 
     return {
+        getNightThemeConditions,
         changeToLightTheme,
         changeToNightTheme,
     };

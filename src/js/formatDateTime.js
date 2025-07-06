@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import { format, roundToNearestHours } from 'date-fns';
 const dateTimeFormatter = () => {
     const getHourOnly = (time) => {
         // format time value to display properly
@@ -39,11 +39,26 @@ const dateTimeFormatter = () => {
         return ret;
     };
 
+    const getNearestHour = (time) => {
+        const timeSplit = time.split(':');
+        // console.log(timeSplit);     //['20', '28', '14']
+
+        const ret = format(
+            roundToNearestHours(new Date(0, 0, 0, timeSplit[0], timeSplit[1], timeSplit[2]), {
+                roundingMethod: 'ceil',
+            }),
+            "kk':'mm':'ss",
+        );
+        // console.log(ret); //{ret: '20:00:00'}
+        return ret;
+    };
+
     return {
         getHourOnly,
         getHourAndMinute,
         getDayOfWeek,
         getDateAndMonth,
+        getNearestHour,
     };
 };
 

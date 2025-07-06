@@ -680,14 +680,14 @@ h6 {
 }
 
 .hourCardTemp,
-.hourCardTempIcon,
+.hourCardTempDegreeIcon,
 .hourCardTempDegree {
     font-size: 1.8rem;
     color: var(--black_text);
     font-weight: 600;
 }
 
-.hourCardTempIcon {
+.hourCardTempDegreeIcon {
     margin-left: 0.26em;
 }
 
