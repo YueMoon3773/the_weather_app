@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>That weather app</title>
+        <link rel="shortcut icon" href="3031747cb0834c327409.ico" type="image/x-icon" />
+
+        <!-- RESET CSS  -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+            integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+    <script defer src="main.js"></script></head>
+    <body>
+        <div class="app">
+            <div class="bgImgWrapper">
+                <img src="e0fdac89f09421fa7f6e.png" alt="Background image" class="bgImg" />
+            </div>
+
+            <!-- NAVBAR SECTION  -->
+            <nav class="navBar night">
+                <div class="navBarLeft">
+                    <div class="navSearchWrapper">
+                        <input type="text" class="navSearchInp" placeholder="Sydney, Australia" />
+                        <div class="navSearchClearWrapper">
+                            <svg class="navSearchClearIconEmpty" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <title>Clear</title>
+                                <path
+                                    d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z"
+                                />
+                            </svg>
+
+                            <svg
+                                class="navSearchClearIconFilled hide"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                            >
+                                <title>Clear</title>
+                                <path
+                                    d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z"
+                                />
+                            </svg>
+                        </div>
+                        <button class="navSearchBtn">
+                            <svg class="navSearchBtnIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <title>Search</title>
+                                <path
+                                    d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="navBarRight">
+                    <div class="navControllerWrapper">
+                        <div class="navTempWrapper">
+                            <span class="navTempBtn active" data-type="temp" data-value="c">°C</span>
+                            <span class="navTempBtn" data-type="temp" data-value="f">°F</span>
+                        </div>
+
+                        <div class="navSpeedWrapper">
+                            <span class="navSpeedBtn active" data-type="speed" data-value="km/h"> km/h </span>
+                            <span class="navSpeedBtn" data-type="speed" data-value="mph">mph</span>
+                        </div>
+
+                        <!-- <div class="navLocationWrapper">
+                            <svg class="navLocationIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <title>Get your current location</title>
+                                <path
+                                    d="M12,2C15.31,2 18,4.66 18,7.95C18,12.41 12,19 12,19C12,19 6,12.41 6,7.95C6,4.66 8.69,2 12,2M12,6A2,2 0 0,0 10,8A2,2 0 0,0 12,10A2,2 0 0,0 14,8A2,2 0 0,0 12,6M20,19C20,21.21 16.42,23 12,23C7.58,23 4,21.21 4,19C4,17.71 5.22,16.56 7.11,15.83L7.75,16.74C6.67,17.19 6,17.81 6,18.5C6,19.88 8.69,21 12,21C15.31,21 18,19.88 18,18.5C18,17.81 17.33,17.19 16.25,16.74L16.89,15.83C18.78,16.56 20,17.71 20,19Z"
+                                />
+                            </svg>
+                        </div> -->
+                    </div>
+                </div>
+            </nav>
+
+            <!-- MAIN CONTENT SECTION  -->
+            <div class="content">
+                <div class="currentBrief">
+                    <!-- GENERAL CURRENT BRIEF SECTION  -->
+                    <div class="currentGeneral">
+                        <div class="generalLeft night">
+                            <div class="generalIconWrapper">
+                                <img src="2909a175d21b0bc0a0c5.svg" alt="" class="generalIcon" />
+                            </div>
+
+                            <div class="generalLeftDetails">
+                                <h1 class="generalLeftTemp">
+                                    28.6
+                                    <span class="generalTempDegreeIcon">°</span>
+                                    <span class="generalTempDegreeUnit">c</span>
+                                </h1>
+                                <span class="generalCondition">Partly cloudy</span>
+                                <span class="generalAddress">Ho Chi Minh</span>
+                            </div>
+                        </div>
+
+                        <div class="generalRight night">
+                            <div class="generalRightTempWrapper">
+                                <div class="generalTempRangeWrapper">
+                                    <span class="generalTempRangeText">
+                                        <svg
+                                            class="generalTempRangeIcon"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <title>Minimum Temperature</title>
+                                            <path
+                                                d="M15 13V5A3 3 0 0 0 9 5V13A5 5 0 1 0 15 13M12 4A1 1 0 0 1 13 5V12H11V5A1 1 0 0 1 12 4Z"
+                                            />
+                                        </svg>
+                                        Min
+                                    </span>
+                                    <h2 data-type="minTemp" class="generalTempRangeVal">
+                                        26.7
+                                        <span class="generalTempRangeValIcon">°</span>
+                                        <span class="generalTempRangeDegreeUnit">f</span>
+                                    </h2>
+                                </div>
+
+                                <div class="generalTempRangeWrapper">
+                                    <span class="generalTempRangeText">
+                                        <svg
+                                            class="generalTempRangeIcon"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <title>Maximum Temperature</title>
+                                            <path
+                                                d="M15 13V5A3 3 0 0 0 9 5V13A5 5 0 1 0 15 13M12 4A1 1 0 0 1 13 5H11A1 1 0 0 1 12 4Z"
+                                            />
+                                        </svg>
+                                        Max
+                                    </span>
+                                    <h2 data-type="maxTemp" class="generalTempRangeVal">
+                                        30.5
+                                        <span class="generalTempRangeValIcon">°</span>
+                                        <span class="generalTempRangeDegreeUnit">c</span>
+                                    </h2>
+                                </div>
+                            </div>
+
+                            <span class="generalFeelLikeText"
+                                >Feels like
+                                <span class="generalFeelLikeTemp"
+                                    >27.3
+                                    <span class="generalFeelLikeTempIcon">°</span>
+                                    <span class="generalFeelLikeTempDegreeUnit">c</span>
+                                </span>
+                            </span>
+                            <span class="generalDateText">2025-06-30</span>
+                        </div>
+                    </div>
+
+                    <div class="currentDetails night">
+                        <div data-type="precipprob" class="currentDetailsCard">
+                            <div data-type="precipprob" class="detailsCardIconWrapper">
+                                <svg
+                                    color="#83b4cf"
+                                    fill="currentColor"
+                                    aria-hidden="true"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="detailsCardIcon"
+                                >
+                                    <path
+                                        d="M12 3c3.17 0 4.97 2.1 5.23 4.63h.08a3.69 3.69 0 110 7.37h-.85a.75.75 0 01-.09.17l-1 1.5a.75.75 0 01-1.24-.84l.56-.83h-2.23a.75.75 0 01-.09.17l-1 1.5a.75.75 0 11-1.24-.84l.56-.83H8.46a.75.75 0 01-.09.17l-1 1.5a.75.75 0 01-1.24-.84l.56-.83a3.69 3.69 0 110-7.37h.08A4.95 4.95 0 0112 3zM7.13 18.83a.75.75 0 101.24.84l1-1.5a.75.75 0 10-1.24-.84l-1 1.5zm4.2 1.04a.75.75 0 01-.2-1.04l1-1.5a.75.75 0 111.24.84l-1 1.5a.75.75 0 01-1.04.2z"
+                                        fill="currentColor"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <div data-type="precipprob" class="detailsCardContent">
+                                <span data-type="precipprob" class="detailsCardTitle">Chance of rain</span>
+                                <div data-type="precipprob" class="detailsCardValueWrapper">
+                                    <span data-type="precipprob" class="detailsCardValue">93</span>
+                                    <span data-type="precipprob" class="detailsCardUnit">%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div data-type="uvindex" class="currentDetailsCard">
+                            <div data-type="uvindex" class="detailsCardIconWrapper">
+                                <svg
+                                    color="#fba087"
+                                    fill="currentColor"
+                                    aria-hidden="true"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="detailsCardIcon"
+                                >
+                                    <path
+                                        d="M12 2c.41 0 .75.34.75.75v1.5a.75.75 0 01-1.5 0v-1.5c0-.41.34-.75.75-.75zm5 10a5 5 0 11-10 0 5 5 0 0110 0zm4.25.75a.75.75 0 000-1.5h-1.5a.75.75 0 000 1.5h1.5zM12 19c.41 0 .75.34.75.75v1.5a.75.75 0 01-1.5 0v-1.5c0-.41.34-.75.75-.75zm-7.75-6.25a.75.75 0 000-1.5h-1.5a.75.75 0 000 1.5h1.5zm-.03-8.53c.3-.3.77-.3 1.06 0l1.5 1.5a.75.75 0 01-1.06 1.06l-1.5-1.5a.75.75 0 010-1.06zm1.06 15.56a.75.75 0 11-1.06-1.06l1.5-1.5a.75.75 0 111.06 1.06l-1.5 1.5zm14.5-15.56a.75.75 0 00-1.06 0l-1.5 1.5a.75.75 0 001.06 1.06l1.5-1.5c.3-.3.3-.77 0-1.06zm-1.06 15.56a.75.75 0 101.06-1.06l-1.5-1.5a.75.75 0 10-1.06 1.06l1.5 1.5z"
+                                        fill="currentColor"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <div data-type="uvindex" class="detailsCardContent">
+                                <span data-type="uvindex" class="detailsCardTitle">UV index</span>
+                                <div data-type="uvindex" class="detailsCardValueWrapper">
+                                    <span data-type="uvindex" class="detailsCardValue">6.3</span>
+                                    <span data-type="uvindex" class="detailsCardUnit"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div data-type="humidity" class="currentDetailsCard">
+                            <div data-type="humidity" class="detailsCardIconWrapper">
+                                <svg
+                                    color="#6bbbea"
+                                    fill="currentColor"
+                                    aria-hidden="true"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="detailsCardIcon"
+                                >
+                                    <path
+                                        d="M11.47 2.22c.3-.3.77-.3 1.06 0 .4.4 2 2.13 3.5 4.36C17.5 8.78 19 11.63 19 14.25c0 2.52-.75 4.48-2.04 5.8A6.78 6.78 0 0112 22a6.78 6.78 0 01-4.96-1.94C5.74 18.73 5 16.77 5 14.25c0-2.62 1.5-5.46 2.97-7.67 1.5-2.23 3.1-3.96 3.5-4.36z"
+                                        fill="currentColor"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <div data-type="humidity" class="detailsCardContent">
+                                <span data-type="humidity" class="detailsCardTitle">Humidity</span>
+                                <div data-type="humidity" class="detailsCardValueWrapper">
+                                    <span data-type="humidity" class="detailsCardValue">93</span>
+                                    <span data-type="humidity" class="detailsCardUnit">%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div data-type="windgust" class="currentDetailsCard">
+                            <div data-type="windgust" class="detailsCardIconWrapper">
+                                <svg
+                                    color="#78e07d"
+                                    fill="currentColor"
+                                    aria-hidden="true"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="detailsCardIcon"
+                                >
+                                    <path
+                                        d="M18.75 9.5a3.25 3.25 0 01.18 6.49h-.2l-.11.01h-.8c.12.31.18.65.18 1 0 1.66-1.26 3-2.93 3-1.3 0-2.23-.63-2.69-1.63a1 1 0 011.77-.93l.1.2c.14.23.37.36.82.36.53 0 .93-.42.93-1a1 1 0 00-.9-1H3a1 1 0 01-.12-2h15.87l.13-.01a1.25 1.25 0 10-1.26-1.8l-.1.23a1 1 0 01-1.83-.8 3.25 3.25 0 013.06-2.13zm-7 2.5H3a1 1 0 01-.12-2h8.87A2.25 2.25 0 109.5 7.75a1 1 0 01-2 0 4.25 4.25 0 114.48 4.24l-.23.01H3h8.75z"
+                                        fill="currentColor"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <div data-type="windgust" class="detailsCardContent">
+                                <span data-type="windgust" class="detailsCardTitle">Wind gusts</span>
+                                <div data-type="windgust" class="detailsCardValueWrapper">
+                                    <span data-type="windgust" class="detailsCardValue">93</span>
+                                    <span data-type="windgust" class="detailsCardUnit">km/h</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div data-type="sunrise" class="currentDetailsCard">
+                            <div data-type="sunrise" class="detailsCardIconWrapper">
+                                <svg
+                                    color="#ffc755"
+                                    fill="currentColor"
+                                    aria-hidden="true"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="detailsCardIcon"
+                                >
+                                    <path
+                                        d="M12 2c.41 0 .75.34.75.75v.5a.75.75 0 01-1.5 0v-.5c0-.41.34-.75.75-.75zM8 9a4 4 0 118 0 4 4 0 01-8 0zm4.75 5.75a.75.75 0 00-1.5 0v.5a.75.75 0 001.5 0v-.5zM5.75 8a.75.75 0 000 1.5h.5a.75.75 0 000-1.5h-.5zM17 8.75c0-.41.34-.75.75-.75h.5a.75.75 0 010 1.5h-.5a.75.75 0 01-.75-.75zM6.72 5.78a.75.75 0 001.06-1.06l-.5-.5a.75.75 0 00-1.06 1.06l.5.5zm1.06 6.44a.75.75 0 00-1.06 0l-.5.5a.75.75 0 101.06 1.06l.5-.5c.3-.3.3-.77 0-1.06zm9.5-6.44a.75.75 0 11-1.06-1.06l.5-.5a.75.75 0 111.06 1.06l-.5.5zm-1.06 6.44c.3-.3.77-.3 1.06 0l.5.5a.75.75 0 11-1.06 1.06l-.5-.5a.75.75 0 010-1.06zm-13 9.62c-.33.25-.8.2-1.06-.12-.4-.51.12-1.06.12-1.06h.02a3.49 3.49 0 01.18-.15l.54-.36A16.78 16.78 0 0112 17.5a16.78 16.78 0 019.7 3.15l.01.01a.75.75 0 01-.93 1.18l-.03-.03a5.63 5.63 0 00-.58-.4A15.28 15.28 0 0012 19a15.28 15.28 0 00-8.75 2.81l-.03.02z"
+                                        fill="currentColor"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <div data-type="sunrise" class="detailsCardContent">
+                                <span data-type="sunrise" class="detailsCardTitle">Sunrise</span>
+                                <div data-type="sunrise" class="detailsCardValueWrapper">
+                                    <span data-type="sunrise" class="detailsCardValue">05:20</span>
+                                    <span data-type="sunrise" class="detailsCardUnit">AM</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div data-type="sunset" class="currentDetailsCard">
+                            <div data-type="sunset" class="detailsCardIconWrapper">
+                                <svg
+                                    color="#5a7ec6"
+                                    fill="currentColor"
+                                    aria-hidden="true"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="detailsCardIcon"
+                                >
+                                    <path
+                                        d="M12.75 2.75a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5zm6.28 2.22c.3.3.3.77 0 1.06l-1.06 1.06a.75.75 0 01-1.06-1.06l1.06-1.06c.3-.3.77-.3 1.06 0zM6.59 13a5.5 5.5 0 1110.82 0h3.84a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5h3.84zm.16 3a.75.75 0 000 1.5h10.5a.75.75 0 000-1.5H6.75zm4 3a.75.75 0 000 1.5h2.5a.75.75 0 000-1.5h-2.5zM4.97 4.97c.3-.3.77-.3 1.06 0l1.06 1.06a.75.75 0 11-1.06 1.06L4.97 6.03a.75.75 0 010-1.06z"
+                                        fill="currentColor"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <div data-type="sunset" class="detailsCardContent">
+                                <span data-type="sunset" class="detailsCardTitle">Sunset</span>
+                                <div data-type="sunset" class="detailsCardValueWrapper">
+                                    <span data-type="sunset" class="detailsCardValue">06:03</span>
+                                    <span data-type="sunset" class="detailsCardUnit">PM</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HOURS BRIEF SECTION  -->
+                <div class="hoursBrief night">
+                    <h2 class="hourBriefTitle">Hourly</h2>
+
+                    <div class="hourCardWrapper">
+                        <div class="hourCard">
+                            <div class="hourCardTimeWrapper">
+                                <span class="hourCardTimeValue">10 AM</span>
+                            </div>
+                            <div class="hourCardIconWrapper">
+                                <img
+                                    class="hourCardIcon"
+                                    src="4d3b00b2c97208099da7.svg"
+                                    alt="Weather condition"
+                                />
+                            </div>
+                            <span class="hourCardTemp">
+                                28
+                                <span class="hourCardTempDegreeIcon">°</span>
+                                <span class="hourCardTempDegree">c</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WEEK BRIEF SECTION  -->
+                <div class="weekBrief night">
+                    <h2 class="weekBriefTitle">This week</h2>
+
+                    <div class="weekCardWrapper">
+                        <div class="weekCard">
+                            <div class="weekCardIconWrapper">
+                                <img
+                                    class="weekCardIcon"
+                                    src="8f34f02322352ce22cac.svg"
+                                    alt="Weather condition"
+                                />
+                            </div>
+
+                            <div class="weekCardContent">
+                                <div class="weekCardContentHeader">
+                                    <span class="weekCardHeaderDay">Wed</span>
+                                    <span class="weekCardHeaderDate">02 Jun</span>
+                                </div>
+
+                                <div class="weekCardContentBody">
+                                    <div class="weekCardBodySide">
+                                        <span class="weekCardBodyText">Min</span>
+                                        <span class="weekCardBodyTemp">
+                                            32.5
+                                            <span class="weekCardBodyTempDegreeIcon">°</span>
+                                            <span class="weekCardBodyTempDegree">c</span>
+                                        </span>
+                                    </div>
+
+                                    <div class="weekCardBodySide">
+                                        <span class="weekCardBodyText">Max</span>
+                                        <span class="weekCardBodyTemp">
+                                            32.5
+                                            <span class="weekCardBodyTempDegreeIcon">°</span>
+                                            <span class="weekCardBodyTempDegree">c</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="loadingImgWrapper hide">
+                <img src="21deee5154283d1a6edc.svg" alt="Loading Image" class="loadingImg" />
+            </div>
+
+            <!-- FOOTER SECTION  -->
+            <footer class="footer night">
+                <a href="https://github.com/YueMoon3773" class="usrName" target="_blank" rel="noopener noreferrer">
+                    <svg class="footerIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <title>Github icon</title>
+                        <path
+                            d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"
+                        />
+                    </svg>
+                    YueMoon
+                </a>
+                <a
+                    href="https://github.com/YueMoon3773/to_do_app"
+                    class="srcLink"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Source
+                </a>
+            </footer>
+        </div>
+    </body>
+</html>
