@@ -32,7 +32,7 @@
     --red_color: #ff2400;
     --dark_red_color: #cc0000;
     --yellow_color: #ffc72c;
-    --light_yellow_color: #ffd700;
+    --light_yellow_color: #d2cba6e0;
     --dark_yellow_color: #febe10;
     --blue_color: #00bfff;
     --light_blue_color: #28c6fb;
@@ -86,6 +86,28 @@ h5,
 h6 {
     overflow-wrap: break-word;
     text-wrap: balance;
+}
+
+@keyframes vanish {
+    from {
+        opacity: 1;
+        display: flex;
+    }
+    to {
+        opacity: 0;
+        display: none;
+    }
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        display: none;
+    }
+    to {
+        opacity: 1;
+        display: flex;
+    }
 }
 /* =============================================== */
 /* APP SECTION  */
@@ -161,6 +183,7 @@ h6 {
     padding: 0.3em 0.6em;
     color: var(--black_text);
     background-color: transparent;
+    transition: var(--element_transition);
 }
 
 .navSearchInp::placeholder {
@@ -226,6 +249,7 @@ h6 {
 .navSearchBtnIcon {
     height: 3rem;
     color: var(--dark_gray_color);
+    transition: var(--element_transition);
 }
 
 .navSearchBtn:hover .navSearchBtnIcon {
@@ -341,6 +365,7 @@ h6 {
     /* padding-bottom: clamp(0, 0.6em, 1em); */
     padding-bottom: 1em;
     overflow-y: auto;
+    animation: appear 360ms ease;
 }
 
 .currentBrief {
@@ -349,6 +374,29 @@ h6 {
     flex-direction: column;
     font-size: 1rem;
     gap: 1.2em;
+}
+
+/* =============================================== */
+/* LOADING SECTION  */
+/* =============================================== */
+.loadingImgWrapper {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    z-index: 20;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loadingImg {
+    height: 300px;
+}
+
+.content.hide,
+.loadingImgWrapper.hide {
+    animation: vanish 360ms ease;
+    display: none;
 }
 
 /* =============================================== */
@@ -855,6 +903,57 @@ h6 {
 }
 
 /* =============================================== */
+/* IMPROVE VISUAL SECTION  */
+/* =============================================== */
+.generalCondition,
+.generalAddress,
+.generalFeelLikeText,
+.generalDateText {
+    transition: var(--element_transition);
+}
+
+.generalCondition:hover,
+.generalAddress:hover,
+.generalFeelLikeText:hover,
+.generalDateText:hover {
+    font-weight: 700;
+    -webkit-text-stroke-width: 0.25px;
+    -webkit-text-stroke-color: var(--snow_white_color);
+}
+
+.generalLeftTemp:hover,
+.generalLeftTemp:hover .generalTempDegreeIcon,
+.generalLeftTemp:hover .generalTempDegreeUnit {
+    color: var(--light_yellow_color);
+}
+
+.navBar .navBarRight > * > * > *,
+.generalLeft > * > *,
+.generalLeft > * > * > *,
+.generalRight > *,
+.generalRight > * > *,
+.generalRight > * > * > *,
+.generalRight > * > * > * > *,
+.currentDetails > * > * > span,
+.currentDetails > * > * > div > *,
+.hoursBrief > *,
+.hoursBrief > * > * > *,
+.hoursBrief > * > * > * > *,
+.weekBrief > *,
+.weekBrief > * > * > * > * > *,
+.weekBrief > * > * > * > * > * > *,
+.weekBrief > * > * > * > * > * > * > *,
+.footer > * {
+    transition: var(--element_transition);
+}
+
+.currentDetails > *,
+.hoursBrief > * > *,
+.weekBrief > * > *,
+.footer {
+    transition: var(--element_transition);
+}
+/* =============================================== */
 /* NIGHT THEME SECTION  */
 /* =============================================== */
 .navBar.night .navSearchClearIconEmpty,
@@ -879,6 +978,12 @@ h6 {
 .footer.night > * {
     color: var(--white_text);
     border-color: var(--snow_white_color);
+}
+
+.generalLeft.night .generalLeftTemp:hover,
+.generalLeft.night .generalLeftTemp:hover .generalTempDegreeIcon,
+.generalLeft.night .generalLeftTemp:hover .generalTempDegreeUnit {
+    color: var(--light_yellow_color);
 }
 
 .navBar.night .navSearchInp {
@@ -911,23 +1016,4 @@ h6 {
 .footer.night:hover {
     background-color: var(--element_night_bg_hover_color);
     box-shadow: var(--element_night_box_shadow);
-}
-
-/* =============================================== */
-/* IMPROVE VISUAL SECTION  */
-/* =============================================== */
-.generalCondition,
-.generalAddress,
-.generalFeelLikeText,
-.generalDateText {
-    transition: var(--element_transition);
-}
-
-.generalCondition:hover,
-.generalAddress:hover,
-.generalFeelLikeText:hover,
-.generalDateText:hover {
-    font-weight: 700;
-    -webkit-text-stroke-width: 0.25px;
-    -webkit-text-stroke-color: var(--snow_white_color);
 }

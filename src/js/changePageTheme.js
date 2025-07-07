@@ -1,3 +1,4 @@
+import { tr } from 'date-fns/locale';
 import { navBar, generalLeft, generalRight, currentDetails, hoursBrief, weekBrief, footer } from './index.js';
 
 const themeHandler = () => {
@@ -15,6 +16,20 @@ const themeHandler = () => {
         'wind',
     ];
     const getNightThemeConditions = () => nightThemeConditions;
+
+    /**
+     * Check if the current condition name got from API is match to night theme.
+     * @param {string} currentWeather - the name of current condition icon.
+     * example value: 'partly-cloudy-night', 'showers-night', or 'rain-snow-showers-night'.
+     * @returns {boolean} true if match, false is not.
+     */
+    const isWeatherMatchNightTheme = (currentWeather) => {
+        const foundItem = getNightThemeConditions().find((item) => {
+            return item === currentWeather;
+        });
+
+        return foundItem === undefined ? false : true;
+    };
 
     const elementList = [navBar, generalLeft, generalRight, currentDetails, hoursBrief, weekBrief, footer];
 
@@ -36,6 +51,7 @@ const themeHandler = () => {
 
     return {
         getNightThemeConditions,
+        isWeatherMatchNightTheme,
         changeToLightTheme,
         changeToNightTheme,
     };

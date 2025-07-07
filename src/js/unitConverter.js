@@ -1,17 +1,11 @@
 const unitConverter = () => {
-    const fahrenheitToCelsius = (fTemp) => {
-        const ret = (fTemp - 32) / 1.8;
-        return ret;
-    };
+    const fahrenheitToCelsius = (fTemp) => ((fTemp - 32) / 1.8).toFixed(1);
 
-    const celsiusToFahrenheit = (cTemp) => {
-        const ret = cTemp * 1.8 + 32;
-        return ret;
-    };
+    const celsiusToFahrenheit = (cTemp) => (cTemp * 1.8 + 32).toFixed(1);
 
-    const kmhToMph = (kmhSpeed) => kmhSpeed * 0.621371;
+    const kmhToMph = (kmhSpeed) => (kmhSpeed * 0.621371).toFixed(1);
 
-    const mphToKmh = (mphSpeed) => mphSpeed * 1.60934;
+    const mphToKmh = (mphSpeed) => (mphSpeed * 1.60934).toFixed(1);
 
     return {
         fahrenheitToCelsius,

@@ -1,5 +1,5 @@
-import { format } from 'date-fns';
 import {
+    bgImg,
     generalIcon,
     generalLeftTempValue,
     generalTempDegreeUnit,
@@ -24,9 +24,16 @@ import {
 import dateTimeFormatter from './formatDateTime.js';
 import { getWeatherIcon, getBgImage } from './getWeatherIconAndBgImg.js';
 import unitConverter from './unitConverter.js';
-import pageControllerStatusHandler from './controllerStatusHandler.js';
 import { verifyCurrentDayHasEnoughHours, getNearestHourIndex } from './supportrRenderHours.js';
+import themeHandler from './changePageTheme.js';
 
+/**
+ * Construct an hour card and append it to the parent element.
+ * @param {string} parentElement - The parent element to append child.
+ * @param {string} time - time data got from API.
+ * @param {string} imgSrc - Image src got from getWeatherIcon function.
+ * @param {string} tempUnit - tem unit got from the controllerStatusHandler.
+ */
 const hourCardConstructor = (parentElement, time, imgSrc, temp, tempUnit) => {
     const formattedTime = dateTimeFormatter().getHourOnly(time);
 
@@ -68,11 +75,18 @@ const hourCardConstructor = (parentElement, time, imgSrc, temp, tempUnit) => {
     parentElement.appendChild(hourCard);
 };
 
+/**
+ * Construct an week card and append it to the parent element.
+ * @param {string} parentElement - The parent element to append child.
+ * @param {string} date - date data got from API.
+ * @param {string} minTemp - minTemp data got from API.
+ * @param {string} maxTemp - maxTemp data got from API.
+ * @param {string} imgSrc - Image src got from getWeatherIcon function.
+ * @param {string} tempUnit - temp unit got from the controllerStatusHandler.
+ */
 const weekCardConstructor = (parentElement, imgSrc, date, minTemp, maxTemp, tempUnit) => {
     const dayOfWeek = dateTimeFormatter().getDayOfWeek(date);
     const dateAndMonth = dateTimeFormatter().getDateAndMonth(date);
-
-    console.log(imgSrc);
 
     const weekCard = document.createElement('div');
     weekCard.className = 'weekCard';
@@ -141,6 +155,12 @@ const weekCardConstructor = (parentElement, imgSrc, date, minTemp, maxTemp, temp
     parentElement.appendChild(weekCard);
 };
 
+/**
+ * update general information.
+ * @param {string} tempUnit - temp unit got from the controllerStatusHandler.
+ * @param {string} speedUnit - speed unit got from the controllerStatusHandler.
+ * @param {string} APIdata -  data got from API.
+ */
 const updateGeneralContent = (tempUnit, speedUnit, APIdata) => {
     // update current general part
     generalIcon.src = getWeatherIcon(APIdata.currentConditions.icon);
@@ -177,6 +197,11 @@ const updateGeneralContent = (tempUnit, speedUnit, APIdata) => {
     detailsCardSunsetValue.textContent = dateTimeFormatter().getHourAndMinute(APIdata.currentConditions.sunset);
 };
 
+/**
+ * render all week card based on the data got from API.
+ * @param {string} tempUnit - temp unit got from the controllerStatusHandler.
+ * @param {string} APIdata -  data got from API.
+ */
 const renderWeekCards = (tempUnit, APIdata) => {
     weekCardWrapper.innerHTML = '';
 
@@ -205,6 +230,11 @@ const renderWeekCards = (tempUnit, APIdata) => {
     }
 };
 
+/**
+ * render all hour card based on the data got from API.
+ * @param {string} tempUnit - temp unit got from the controllerStatusHandler.
+ * @param {string} APIdata -  data got from API.
+ */
 const renderHourCards = (tempUnit, APIdata) => {
     hourCardWrapper.innerHTML = '';
 
@@ -257,4 +287,32 @@ const renderHourCards = (tempUnit, APIdata) => {
     }
 };
 
-export { updateGeneralContent, renderHourCards, renderWeekCards };
+/**
+ * Update background Img based on the data got from API.
+ * @param {string} APIdata - temp unit got from getBgImage function.
+ */
+const updateBgImg = (APIdata) => {
+    bgImg.src = getBgImage(APIdata.currentConditions.icon);
+};
+
+/**
+ * update whole page content with all the function above + change theme.
+ * @param {string} tempUnit - temp unit got from the controllerStatusHandler.
+ * @param {string} speedUnit - speed unit got from the controllerStatusHandler.
+ * @param {string} APIdata -  data got from API.
+ */
+const updateWholePageContent = (tempUnit, speedUnit, APIdata) => {
+    updateGeneralContent(tempUnit, speedUnit, APIdata);
+    renderHourCards(tempUnit, APIdata);
+    renderWeekCards(tempUnit, APIdata);
+    updateBgImg(APIdata);
+
+    const isNightTheme = themeHandler().isWeatherMatchNightTheme(APIdata.currentConditions.icon);
+    if (isNightTheme) {
+        themeHandler().changeToNightTheme();
+    } else {
+        themeHandler().changeToLightTheme();
+    }
+};
+
+export { updateWholePageContent };
