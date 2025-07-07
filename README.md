@@ -13,32 +13,39 @@ Welcome to **YueMoon The weather app**, a sleek, responsive web application that
 
 ## 🛠️ Tech Stack / Skills
 
-- ***HTML***: Structuring the layout and elements.
-- ***CSS***: Styling to create an attractive and user interface, develop layouts and modal styling.
-- ***JavaScript***: For API integration, application logic, event handling, and dynamic DOM updates, component-based architecture and dynamic DOM rendering.
-- ***Local Storage API***: Persistent data storage across browser sessions
-
+- **_HTML_**: Structuring the layout and elements.
+- **_CSS_**: Styling to create an attractive and user interface, develop layouts and modal styling.
+- **_JavaScript_**: For API integration, application logic, event handling, and dynamic DOM updates, component-based architecture and dynamic DOM rendering.
+- **_Local Storage API_**: Persistent data storage across browser sessions
 
 ## 🎯 Project Purposes
+
 - API Integration: Learn to consume third‑party weather APIs and handle JSON responses.
 - Dynamic Theming: Implement real‑time UI updates based on external data (weather).
 - Unit Conversion Logic: Practice designing stateful toggles for measurement units.
 - User Experience: Deliver an engaging, visually appealing interface that reacts to real conditions.
+
 ## 🗓️ Future plans/improvement
 
 - Add feature to get user current location.
+
 ## 🌍 Live Demo
 
 Try out the YueMoon Weather App right away: [Live demo link](https://yuemoon3773.github.io/the_weather_app/)
+
 ## Appendix
 
-- Backgound images are created by [Gemini](https://gemini.google.com/)
+- Background images are created by [Gemini](https://gemini.google.com/)
 - Weather icons are created by [Free Weather API](https://www.weatherapi.com/)
 - SVG images are created by [pictogrammers](https://pictogrammers.com/)
+- Loading screen is created by [loading.io](https://loading.io/)
 
 ## 📬 Contact
+
 Contact me via:
 
 💌 Email: [nguyenhuagiabao.98@gmail.com](nguyenhuagiabao.98@gmail.com)
-## 
+
+##
+
 Enjoy exploring the skies with the_weather_app! 🌥️🌙🌞
