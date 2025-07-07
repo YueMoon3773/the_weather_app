@@ -35,6 +35,7 @@ Try out the YueMoon Weather App right away: [Live demo link](https://yuemoon3773
 
 ## Appendix
 
+- Weather data is provided by [Visual Crossing](https://www.visualcrossing.com/)
 - Background images are created by [Gemini](https://gemini.google.com/)
 - Weather icons are created by [Free Weather API](https://www.weatherapi.com/)
 - SVG images are created by [pictogrammers](https://pictogrammers.com/)
