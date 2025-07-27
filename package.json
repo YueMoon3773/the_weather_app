@@ -1,5 +1,5 @@
 {
-    "name": "webpack_template",
+    "name": "the_weather_app",
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
@@ -10,7 +10,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git@github.com-yue:YueMoon3773/webpack_template.git"
+        "url": "git@github.com-yue:YueMoon3773/the_weather_app.git"
     },
     "keywords": [],
     "author": "",
