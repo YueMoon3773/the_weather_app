@@ -247,42 +247,82 @@ const renderHourCards = (tempUnit, APIdata) => {
 
     if (verifiedNearestHour.isPass) {
         for (let i = nearestHourIndex; i < nearestHourIndex + 7; i++) {
-            hourCardConstructor(
-                hourCardWrapper,
-                APIdata.days[0].hours[i].datetime,
-                getWeatherIcon(APIdata.days[0].hours[i].icon),
-                APIdata.days[0].hours[i].temp,
-                tempUnit,
-            );
+            if (tempUnit === 'c') {
+                hourCardConstructor(
+                    hourCardWrapper,
+                    APIdata.days[0].hours[i].datetime,
+                    getWeatherIcon(APIdata.days[0].hours[i].icon),
+                    APIdata.days[0].hours[i].temp,
+                    tempUnit,
+                );
+            } else if (tempUnit === 'f') {
+                hourCardConstructor(
+                    hourCardWrapper,
+                    APIdata.days[0].hours[i].datetime,
+                    getWeatherIcon(APIdata.days[0].hours[i].icon),
+                    unitConverter().celsiusToFahrenheit(APIdata.days[0].hours[i].temp),
+                    tempUnit,
+                );
+            }
         }
     } else if (!verifiedNearestHour.isPass && verifiedNearestHour.hoursNeeded === 7) {
         for (let i = 0; i < verifiedNearestHour.hoursNeeded; i++) {
-            hourCardConstructor(
-                hourCardWrapper,
-                APIdata.days[1].hours[i].datetime,
-                getWeatherIcon(APIdata.days[1].hours[i].icon),
-                APIdata.days[1].hours[i].temp,
-                tempUnit,
-            );
+            if (tempUnit === 'c') {
+                hourCardConstructor(
+                    hourCardWrapper,
+                    APIdata.days[1].hours[i].datetime,
+                    getWeatherIcon(APIdata.days[1].hours[i].icon),
+                    APIdata.days[1].hours[i].temp,
+                    tempUnit,
+                );
+            } else if (tempUnit === 'f') {
+                hourCardConstructor(
+                    hourCardWrapper,
+                    APIdata.days[1].hours[i].datetime,
+                    getWeatherIcon(APIdata.days[1].hours[i].icon),
+                    unitConverter().celsiusToFahrenheit(APIdata.days[1].hours[i].temp),
+                    tempUnit,
+                );
+            }
         }
     } else {
         for (let i = nearestHourIndex; i < 24; i++) {
-            hourCardConstructor(
-                hourCardWrapper,
-                APIdata.days[0].hours[i].datetime,
-                getWeatherIcon(APIdata.days[0].hours[i].icon),
-                APIdata.days[0].hours[i].temp,
-                tempUnit,
-            );
+            if (tempUnit === 'c') {
+                hourCardConstructor(
+                    hourCardWrapper,
+                    APIdata.days[0].hours[i].datetime,
+                    getWeatherIcon(APIdata.days[0].hours[i].icon),
+                    APIdata.days[0].hours[i].temp,
+                    tempUnit,
+                );
+            } else if (tempUnit === 'f') {
+                hourCardConstructor(
+                    hourCardWrapper,
+                    APIdata.days[0].hours[i].datetime,
+                    getWeatherIcon(APIdata.days[0].hours[i].icon),
+                    unitConverter().celsiusToFahrenheit(APIdata.days[0].hours[i].temp),
+                    tempUnit,
+                );
+            }
         }
         for (let i = 0; i < verifiedNearestHour.hoursNeeded - 1; i++) {
-            hourCardConstructor(
-                hourCardWrapper,
-                APIdata.days[1].hours[i].datetime,
-                getWeatherIcon(APIdata.days[1].hours[i].icon),
-                APIdata.days[1].hours[i].temp,
-                tempUnit,
-            );
+            if (tempUnit === 'c') {
+                hourCardConstructor(
+                    hourCardWrapper,
+                    APIdata.days[1].hours[i].datetime,
+                    getWeatherIcon(APIdata.days[1].hours[i].icon),
+                    APIdata.days[1].hours[i].temp,
+                    tempUnit,
+                );
+            } else if (tempUnit === 'f') {
+                hourCardConstructor(
+                    hourCardWrapper,
+                    APIdata.days[1].hours[i].datetime,
+                    getWeatherIcon(APIdata.days[1].hours[i].icon),
+                    unitConverter().celsiusToFahrenheit(APIdata.days[1].hours[i].temp),
+                    tempUnit,
+                );
+            }
         }
     }
 };

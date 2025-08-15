@@ -22,7 +22,7 @@ const pageControllerStatusHandler = () => {
      * @returns none if update fail.
      */
     const changeTempPageCurrentControllerStatus = (tempUnit) => {
-        console.log({ tempUnit });
+        // console.log({ tempUnit });
 
         if (tempUnit === getPageCurrentControllerStatus().tempUnit) {
             return;
@@ -42,7 +42,7 @@ const pageControllerStatusHandler = () => {
      * @returns none if update fail.
      */
     const changeSpeedPageCurrentControllerStatus = (speedUnit) => {
-        console.log({ speedUnit });
+        // console.log({ speedUnit });
 
         if (speedUnit === getPageCurrentControllerStatus().speedUnit) {
             return;

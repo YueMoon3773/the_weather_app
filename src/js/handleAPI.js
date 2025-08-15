@@ -48,7 +48,7 @@ const handleAPI = () => {
             URL = URLHandler(type, simpleLocation, longitude, latitude);
             const res = await fetch(URL);
             const data = await res.json();
-            console.log({ data });
+            // console.log({ data });
 
             return data;
         } catch (e) {
