@@ -24,7 +24,7 @@ import {
 import dateTimeFormatter from './formatDateTime.js';
 import { getWeatherIcon, getBgImage } from './getWeatherIconAndBgImg.js';
 import unitConverter from './unitConverter.js';
-import { verifyCurrentDayHasEnoughHours, getNearestHourIndex } from './supportrRenderHours.js';
+import { verifyCurrentDayHasEnoughHours, getNearestHourIndex } from './supportRenderHours.js';
 import themeHandler from './changePageTheme.js';
 
 /**
