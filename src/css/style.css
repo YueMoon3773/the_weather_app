@@ -47,6 +47,32 @@
     --element_transition: all 360ms ease-in-out;
     --element_box_shadow: 4px 4px 10px var(--gray_color);
     --element_night_box_shadow: 4px 4px 10px var(--light_black_text);
+
+    --fs_heading_4xl: clamp(8.6rem, 4.6vw + 9.6rem, 10.6rem);
+    --fs_heading_xxl: clamp(4.6rem, 3.6vw + 4.8rem, 5.6rem);
+    --fs_heading_xl: clamp(4rem, 3vw + 4rem, 4.6rem);
+    --fs_heading_lg: clamp(3.6rem, 2.6vw + 3.6rem, 4rem);
+    --fs_heading_md: clamp(3.2rem, 1.86vw + 3.2rem, 3.6rem);
+    --fs_heading_sm: clamp(3rem, 1.66vw + 3rem, 3.2rem);
+    --fs_heading_ssm: clamp(2.66rem, 1.6vw + 2.8rem, 3rem);
+    --fs_heading_3sm: clamp(2.6rem, 1.4vw + 2.6rem, 2.66rem);
+
+    --fs_normal_xl: clamp(2.26rem, 1.2vw + 2.2rem, 2.46rem);
+    --fs_normal_lg: clamp(1.76rem, 0.8vw + 1.8rem, 2.26rem);
+    --fs_normal_md: clamp(1.66rem, 0.6vw + 1.66rem, 1.76rem);
+    --fs_normal_sm: clamp(1.56rem, 0.46vw + 1.6rem, 1.66rem);
+    --fs_normal_ssm: clamp(1.36rem, 0.3vw + 1.4rem, 1.56rem);
+    --fs_normal_3sm: clamp(1rem, 0.3vw + 1.2rem, 1.36rem);
+    --fs_normal_4sm: clamp(0.66rem, 0.2vw + 0.86rem, 1rem);
+
+    --distance_3xl: 48px;
+    --distance_xxl: 40px;
+    --distance_xl: 32px;
+    --distance_lg: 24px;
+    --distance_md: 16px;
+    --distance_sm: 8px;
+    --distance_ssm: 6px;
+    --distance_3sm: 4px;
 }
 
 /* Reset CSS styles for some elements */
@@ -109,6 +135,31 @@ h6 {
         display: flex;
     }
 }
+
+/* SCROLLBAR SET UP */
+::-webkit-scrollbar {
+    width: var(--distance_3sm);
+    height: var(--distance_3sm);
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.36);
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    background: var(--light_gray_color);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.36);
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+    background: var(--dark_gray_color);
+}
+
 /* =============================================== */
 /* APP SECTION  */
 /* =============================================== */
@@ -152,7 +203,7 @@ h6 {
     padding-left: var(--page_two_side_padding);
     padding-right: var(--page_two_side_padding);
     display: grid;
-    grid-template-columns: 5fr 3fr;
+    grid-template-columns: 3.5fr 3fr;
     gap: 2.6em;
 }
 
@@ -178,7 +229,7 @@ h6 {
     outline: none;
     border-color: transparent;
 
-    font-size: 2rem;
+    font-size: var(--fs_normal_md);
     font-weight: 600;
     padding: 0.3em 0.6em;
     color: var(--black_text);
@@ -247,7 +298,7 @@ h6 {
 }
 
 .navSearchBtnIcon {
-    height: 3rem;
+    height: var(--fs_heading_ssm);
     color: var(--dark_gray_color);
     transition: var(--element_transition);
 }
@@ -279,7 +330,7 @@ h6 {
 
 .navTempBtn,
 .navSpeedBtn {
-    font-size: 2rem;
+    font-size: var(--fs_normal_md);
     color: var(--black_text);
     font-weight: 600;
     padding: 0.46em 0.66em;
@@ -372,6 +423,8 @@ h6 {
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
     font-size: 1rem;
     gap: 1.2em;
 }
@@ -405,11 +458,11 @@ h6 {
 .currentGeneral {
     height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: stretch;
+    justify-content: space-evenly;
     flex-wrap: wrap;
+    gap: clamp(20px, 2.4rem, 26px);
 
-    /* background-color: var(--element_bg_color); */
     transition: var(--element_transition);
     overflow: hidden;
     font-size: 1rem;
@@ -421,7 +474,7 @@ h6 {
 } */
 
 .generalLeft {
-    height: 100%;
+    /* height: 100%; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -452,7 +505,7 @@ h6 {
 .generalLeftTemp,
 .generalTempDegreeIcon,
 .generalTempDegreeUnit {
-    font-size: 10.6rem;
+    font-size: var(--fs_heading_4xl);
     font-weight: 900;
     margin: 0;
     color: var(--black_text);
@@ -471,7 +524,7 @@ h6 {
 .generalFeelLikeTempIcon,
 .generalFeelLikeTempDegreeUnit,
 .generalDateText {
-    font-size: 2.4rem;
+    font-size: var(--fs_normal_xl);
     font-weight: 600;
     color: var(--light_black_text);
 
@@ -479,8 +532,12 @@ h6 {
     cursor: default;
 }
 
+.generalAddress {
+    text-transform: capitalize;
+}
+
 .generalRight {
-    height: 100%;
+    /* height: 100%; */
     font-size: 1rem;
     display: grid;
     grid-template-rows: 1.5fr 0.5fr 0.5fr;
@@ -529,7 +586,7 @@ h6 {
 }
 
 .generalTempRangeText {
-    font-size: 2.4rem;
+    font-size: var(--fs_normal_xl);
     font-weight: 600;
     color: var(--black_text);
     display: flex;
@@ -547,7 +604,7 @@ h6 {
 .generalTempRangeVal,
 .generalTempRangeValIcon,
 .generalTempRangeDegreeUnit {
-    font-size: 4.6rem;
+    font-size: var(--fs_heading_xl);
     color: var(--black_text);
     font-weight: 900;
     cursor: default;
@@ -601,14 +658,15 @@ h6 {
 }
 
 .detailsCardIconWrapper {
+    font-size: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .detailsCardIcon {
-    font-size: 1rem;
-    height: 2.76em;
+    /* font-size: 1rem; */
+    height: var(--fs_heading_3sm);
     stroke: var(--snow_white_color);
     stroke-width: 0.025px;
     stroke-linejoin: round;
@@ -624,14 +682,14 @@ h6 {
 }
 
 .detailsCardTitle {
-    font-size: 1.8rem;
+    font-size: var(--fs_normal_md);
     font-weight: 500;
     color: var(--black_text);
 }
 
 .detailsCardValue,
 .detailsCardUnit {
-    font-size: 2.2rem;
+    font-size: var(--fs_normal_xl);
     color: var(--black_text);
     font-weight: 700;
 }
@@ -649,14 +707,14 @@ h6 {
     font-size: 1rem;
     display: flex;
     flex-direction: column;
-    margin-top: 3em;
+    margin-top: 1.6em;
     gap: 1.4em;
 }
 
 .hourBriefTitle,
 .weekBriefTitle {
     width: 100%;
-    font-size: 2.8rem;
+    font-size: var(--fs_heading_ssm);
     color: var(--black_text);
     cursor: default;
     display: block;
@@ -702,7 +760,7 @@ h6 {
 }
 
 .hourCardTimeValue {
-    font-size: 2rem;
+    font-size: var(--fs_normal_lg);
     color: var(--black_text);
     font-weight: 800;
     cursor: default;
@@ -730,7 +788,7 @@ h6 {
 .hourCardTemp,
 .hourCardTempDegreeIcon,
 .hourCardTempDegree {
-    font-size: 1.8rem;
+    font-size: var(--fs_normal_lg);
     color: var(--black_text);
     font-weight: 600;
 }
@@ -803,12 +861,9 @@ h6 {
 
 .weekCardHeaderDay,
 .weekCardHeaderDate {
-    font-size: 1.8rem;
+    font-size: var(--fs_normal_lg);
     font-weight: 600;
     color: var(--black_text);
-}
-
-.weekCardHeaderDate {
 }
 
 .weekCardContentBody {
@@ -829,7 +884,7 @@ h6 {
 }
 
 .weekCardBodyText {
-    font-size: 1.6rem;
+    font-size: var(--fs_normal_sm);
     color: var(--black_text);
     font-weight: 500;
     cursor: default;
@@ -838,7 +893,7 @@ h6 {
 .weekCardBodyTemp,
 .weekCardBodyTempDegreeIcon,
 .weekCardBodyTempDegree {
-    font-size: 2.4rem;
+    font-size: var(--fs_normal_xl);
     font-weight: 600;
     color: var(--black_text);
     cursor: default;
@@ -889,7 +944,7 @@ h6 {
 
 .usrName,
 .srcLink {
-    font-size: 1.6rem;
+    font-size: var(--fs_normal_sm);
     font-weight: 500;
     color: var(--black_text);
 
@@ -1016,4 +1071,482 @@ h6 {
 .footer.night:hover {
     background-color: var(--element_night_bg_hover_color);
     box-shadow: var(--element_night_box_shadow);
+}
+
+/* =============================================== */
+/* RESPONSIVE SECTION  */
+/* =============================================== */
+@media (max-width: 1024px) {
+    .navSearchInp,
+    .navTempBtn,
+    .navSpeedBtn,
+    .detailsCardTitle {
+        font-size: calc(var(--fs_normal_md) * 0.96);
+    }
+
+    .navSearchBtnIcon {
+        height: var(--fs_heading_3sm);
+    }
+
+    .navBar,
+    .content {
+        padding-left: calc(var(--page_two_side_padding) * 0.6);
+        padding-right: calc(var(--page_two_side_padding) * 0.6);
+    }
+
+    .currentDetails {
+        justify-content: space-evenly;
+    }
+
+    .hourCardWrapper,
+    .weekCardWrapper {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .generalIcon {
+        height: clamp(20em, 21em, 22em);
+    }
+
+    .generalLeftTemp,
+    .generalTempDegreeIcon,
+    .generalTempDegreeUnit {
+        font-size: calc(var(--fs_heading_4xl) * 0.96);
+    }
+
+    .generalTempRangeWrapper {
+        gap: 1.2em;
+    }
+
+    .generalTempRangeText,
+    .generalTempRangeVal,
+    .generalTempRangeValIcon,
+    .generalTempRangeDegreeUnit,
+    .generalCondition,
+    .generalAddress,
+    .generalFeelLikeText,
+    .generalFeelLikeTemp,
+    .generalFeelLikeTempIcon,
+    .generalFeelLikeTempDegreeUnit,
+    .generalDateText,
+    .detailsCardValue,
+    .detailsCardUnit,
+    .weekCardBodyTemp,
+    .weekCardBodyTempDegreeIcon,
+    .weekCardBodyTempDegree {
+        font-size: calc(var(--fs_normal_xl) * 0.96);
+    }
+
+    .detailsCardIcon {
+        height: calc(var(--fs_heading_3sm) * 0.96);
+    }
+
+    .hourBriefTitle,
+    .weekBriefTitle {
+        font-size: calc(var(--fs_heading_ssm) * 0.96);
+    }
+
+    .hourCard {
+        padding: 1em 2.4em;
+    }
+
+    .hourCardTimeValue,
+    .hourCardTemp,
+    .hourCardTempDegreeIcon,
+    .hourCardTempDegree,
+    .weekCardHeaderDay,
+    .weekCardHeaderDate {
+        font-size: calc(var(--fs_normal_lg) * 0.96);
+    }
+
+    .hourCardIcon {
+        height: 6em;
+    }
+
+    .weekCard {
+        padding: 1em 2.4em;
+    }
+
+    .weekCardIcon {
+        height: 8em;
+    }
+
+    .weekCardBodyText,
+    .usrName,
+    .srcLink {
+        font-size: calc(var(--fs_normal_sm) * 0.96);
+    }
+
+    .footerIcon {
+        height: 2.2rem;
+    }
+}
+
+@media (max-width: 860px) {
+    .navSearchInp,
+    .navTempBtn,
+    .navSpeedBtn,
+    .detailsCardTitle {
+        font-size: var(--fs_normal_ssm);
+    }
+
+    .navTempBtn,
+    .navSpeedBtn {
+        padding: 0.26em 0.36em;
+    }
+
+    .navSearchBtnIcon {
+        height: var(--fs_normal_lg);
+    }
+
+    .navSearchClearIconEmpty {
+        height: 2rem;
+    }
+
+    .navBar,
+    .content {
+        padding-left: calc(var(--page_two_side_padding) * 0.46);
+        padding-right: calc(var(--page_two_side_padding) * 0.46);
+    }
+
+    .currentGeneral {
+        gap: clamp(12px, 1.6rem, 18px);
+    }
+
+    .currentDetails {
+        justify-content: space-evenly;
+    }
+
+    .hourCardWrapper,
+    .weekCardWrapper {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .generalIcon {
+        height: clamp(10em, 12em, 16em);
+    }
+
+    .generalLeftTemp,
+    .generalTempDegreeIcon,
+    .generalTempDegreeUnit {
+        font-size: calc(var(--fs_heading_4xl) * 0.56);
+    }
+
+    .generalTempRangeWrapper {
+        gap: 1em;
+    }
+
+    .generalTempRangeText,
+    .generalTempRangeVal,
+    .generalTempRangeValIcon,
+    .generalTempRangeDegreeUnit,
+    .generalCondition,
+    .generalAddress,
+    .generalFeelLikeText,
+    .generalFeelLikeTemp,
+    .generalFeelLikeTempIcon,
+    .generalFeelLikeTempDegreeUnit,
+    .generalDateText,
+    .detailsCardValue,
+    .detailsCardUnit,
+    .weekCardBodyTemp,
+    .weekCardBodyTempDegreeIcon,
+    .weekCardBodyTempDegree {
+        font-size: var(--fs_normal_md);
+    }
+
+    .detailsCardIcon {
+        height: var(--fs_normal_xl);
+    }
+
+    .hourBriefTitle,
+    .weekBriefTitle {
+        font-size: var(--fs_heading_3sm);
+    }
+
+    .hourCard {
+        padding: 1em 2em;
+    }
+
+    .hourCardTimeValue,
+    .hourCardTemp,
+    .hourCardTempDegreeIcon,
+    .hourCardTempDegree,
+    .weekCardHeaderDay,
+    .weekCardHeaderDate {
+        font-size: var(--fs_normal_md);
+    }
+
+    .hourCardIcon {
+        height: 4.6em;
+    }
+
+    .weekCard {
+        padding: 1em 2em;
+    }
+
+    .weekCardIcon {
+        height: 7.6em;
+    }
+
+    .weekCardBodyText,
+    .usrName,
+    .srcLink {
+        font-size: var(--fs_normal_ssm);
+    }
+
+    .footerIcon {
+        height: 2.2rem;
+    }
+}
+
+@media (max-width: 560px) {
+    .navSearchInp,
+    .navTempBtn,
+    .navSpeedBtn,
+    .detailsCardTitle {
+        font-size: var(--fs_normal_3sm);
+    }
+
+    .navTempBtn,
+    .navSpeedBtn {
+        padding: 0.16em 0.16em;
+    }
+
+    .navSearchBtnIcon {
+        height: var(--fs_normal_lg);
+    }
+
+    .navSearchClearIconEmpty {
+        height: 1.6rem;
+    }
+
+    .navBar,
+    .content {
+        padding-left: calc(var(--page_two_side_padding) * 0.16);
+        padding-right: calc(var(--page_two_side_padding) * 0.16);
+    }
+
+    .currentGeneral {
+        gap: clamp(8px, 1rem, 16px);
+    }
+
+    .currentDetails {
+        justify-content: space-evenly;
+    }
+
+    .hourCardWrapper,
+    .weekCardWrapper {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .generalIcon {
+        height: clamp(6em, 8em, 10em);
+    }
+
+    .generalLeftTemp,
+    .generalTempDegreeIcon,
+    .generalTempDegreeUnit {
+        font-size: var(--fs_heading_xxl);
+    }
+
+    .generalTempRangeWrapper {
+        gap: 1em;
+    }
+
+    .generalTempRangeText,
+    .generalTempRangeVal,
+    .generalTempRangeValIcon,
+    .generalTempRangeDegreeUnit,
+    .generalCondition,
+    .generalAddress,
+    .generalFeelLikeText,
+    .generalFeelLikeTemp,
+    .generalFeelLikeTempIcon,
+    .generalFeelLikeTempDegreeUnit,
+    .generalDateText,
+    .detailsCardValue,
+    .detailsCardUnit,
+    .weekCardBodyTemp,
+    .weekCardBodyTempDegreeIcon,
+    .weekCardBodyTempDegree {
+        font-size: var(--fs_normal_sm);
+    }
+
+    .detailsCardIcon {
+        height: var(--fs_normal_lg);
+    }
+
+    .hourBriefTitle,
+    .weekBriefTitle {
+        font-size: var(--fs_normal_xl);
+    }
+
+    .hourCard {
+        padding: 1em 2em;
+    }
+
+    .hourCardTimeValue,
+    .hourCardTemp,
+    .hourCardTempDegreeIcon,
+    .hourCardTempDegree,
+    .weekCardHeaderDay,
+    .weekCardHeaderDate {
+        font-size: var(--fs_normal_sm);
+    }
+
+    .hourCardIcon {
+        height: 3.8em;
+    }
+
+    .weekCard {
+        padding: 1em 2em;
+    }
+
+    .weekCardIcon {
+        height: 6.6em;
+    }
+
+    .weekCardBodyText,
+    .usrName,
+    .srcLink {
+        font-size: var(--fs_normal_3sm);
+    }
+
+    .footerIcon {
+        height: 2.2rem;
+    }
+}
+
+@media (max-width: 460px) {
+    .navSearchInp,
+    .navTempBtn,
+    .navSpeedBtn,
+    .detailsCardTitle {
+        font-size: var(--fs_normal_4sm);
+    }
+
+    .navTempBtn,
+    .navSpeedBtn {
+        padding: 0.16em 0.16em;
+    }
+
+    .navSearchBtnIcon {
+        height: var(--fs_normal_md);
+    }
+
+    .navSearchClearIconEmpty {
+        height: 1.2rem;
+    }
+
+    .navBar,
+    .content {
+        padding-left: calc(var(--page_two_side_padding) * 0.06);
+        padding-right: calc(var(--page_two_side_padding) * 0.06);
+    }
+
+    .navBar {
+        gap: 1.2em;
+    }
+
+    .navControllerWrapper {
+        gap: 1.2em;
+    }
+
+    .currentGeneral {
+        gap: clamp(12px, 1.6rem, 18px);
+    }
+
+    .currentDetails {
+        justify-content: space-evenly;
+    }
+
+    .hourCardWrapper,
+    .weekCardWrapper {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .generalIcon {
+        height: clamp(2em, 6em, 8em);
+    }
+
+    .generalLeftTemp,
+    .generalTempDegreeIcon,
+    .generalTempDegreeUnit {
+        font-size: var(--fs_heading_lg);
+    }
+
+    .generalTempRangeText,
+    .generalTempRangeVal,
+    .generalTempRangeValIcon,
+    .generalTempRangeDegreeUnit,
+    .generalCondition,
+    .generalAddress,
+    .generalFeelLikeText,
+    .generalFeelLikeTemp,
+    .generalFeelLikeTempIcon,
+    .generalFeelLikeTempDegreeUnit,
+    .generalDateText,
+    .detailsCardValue,
+    .detailsCardUnit,
+    .weekCardBodyTemp,
+    .weekCardBodyTempDegreeIcon,
+    .weekCardBodyTempDegree {
+        font-size: var(--fs_normal_ssm);
+    }
+
+    .detailsCardIcon {
+        height: var(--fs_normal_md);
+    }
+
+    .hourBriefTitle,
+    .weekBriefTitle {
+        font-size: var(--fs_normal_lg);
+    }
+
+    .hourCard {
+        padding: 1em 1.6em;
+    }
+
+    .hourCardTimeValue,
+    .hourCardTemp,
+    .hourCardTempDegreeIcon,
+    .hourCardTempDegree,
+    .weekCardHeaderDay,
+    .weekCardHeaderDate {
+        font-size: var(--fs_normal_ssm);
+    }
+
+    .hourCardIcon {
+        height: 3.6em;
+    }
+
+    .weekCard {
+        padding: 1em 2em;
+    }
+
+    .weekCardIcon {
+        height: 6.6em;
+    }
+
+    .weekCardBodyText,
+    .usrName,
+    .srcLink {
+        font-size: var(--fs_normal_4sm);
+    }
+
+    .footerIcon {
+        height: 2.2rem;
+    }
 }
