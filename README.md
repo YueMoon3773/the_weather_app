@@ -16,7 +16,6 @@ Welcome to **YueMoon The weather app**, a sleek, responsive web application that
 - **_HTML_**: Structuring the layout and elements.
 - **_CSS_**: Styling to create an attractive and user interface, develop layouts and modal styling.
 - **_JavaScript_**: For API integration, application logic, event handling, and dynamic DOM updates, component-based architecture and dynamic DOM rendering.
-- **_Local Storage API_**: Persistent data storage across browser sessions
 
 ## 🎯 Project Purposes
 
