@@ -21,11 +21,11 @@ import {
     hourCardWrapper,
     weekCardWrapper,
 } from './index.js';
-import dateTimeFormatter from './formatDateTime.js';
+import dateTimeFormatterManageObj from './formatDateTime.js';
 import { getWeatherIcon, getBgImage } from './getWeatherIconAndBgImg.js';
-import unitConverter from './unitConverter.js';
+import unitConverterManageObj from './unitConverterManageObj.js';
 import { verifyCurrentDayHasEnoughHours, getNearestHourIndex } from './supportRenderHours.js';
-import themeHandler from './changePageTheme.js';
+import themeHandlerManageObj from './changePageTheme.js';
 
 /**
  * Construct an hour card and append it to the parent element.
@@ -35,7 +35,7 @@ import themeHandler from './changePageTheme.js';
  * @param {string} tempUnit - tem unit got from the controllerStatusHandler.
  */
 const hourCardConstructor = (parentElement, time, imgSrc, temp, tempUnit) => {
-    const formattedTime = dateTimeFormatter().getHourOnly(time);
+    const formattedTime = dateTimeFormatterManageObj().getHourOnly(time);
 
     // Create and append elements
     const hourCard = document.createElement('div');
@@ -85,8 +85,8 @@ const hourCardConstructor = (parentElement, time, imgSrc, temp, tempUnit) => {
  * @param {string} tempUnit - temp unit got from the controllerStatusHandler.
  */
 const weekCardConstructor = (parentElement, imgSrc, date, minTemp, maxTemp, tempUnit) => {
-    const dayOfWeek = dateTimeFormatter().getDayOfWeek(date);
-    const dateAndMonth = dateTimeFormatter().getDateAndMonth(date);
+    const dayOfWeek = dateTimeFormatterManageObj().getDayOfWeek(date);
+    const dateAndMonth = dateTimeFormatterManageObj().getDateAndMonth(date);
 
     const weekCard = document.createElement('div');
     weekCard.className = 'weekCard';
@@ -172,10 +172,16 @@ const updateGeneralContent = (tempUnit, speedUnit, APIdata) => {
         generalTempMaxRange.firstChild.nodeValue = APIdata.days[0].tempmax;
         generalFeelLikeTemp.firstChild.nodeValue = APIdata.currentConditions.feelslike;
     } else if (tempUnit === 'f') {
-        generalLeftTempValue.firstChild.nodeValue = unitConverter().celsiusToFahrenheit(APIdata.currentConditions.temp);
-        generalTempMinRange.firstChild.nodeValue = unitConverter().celsiusToFahrenheit(APIdata.days[0].tempmin);
-        generalTempMaxRange.firstChild.nodeValue = unitConverter().celsiusToFahrenheit(APIdata.days[0].tempmax);
-        generalFeelLikeTemp.firstChild.nodeValue = unitConverter().celsiusToFahrenheit(
+        generalLeftTempValue.firstChild.nodeValue = unitConverterManageObj().celsiusToFahrenheit(
+            APIdata.currentConditions.temp,
+        );
+        generalTempMinRange.firstChild.nodeValue = unitConverterManageObj().celsiusToFahrenheit(
+            APIdata.days[0].tempmin,
+        );
+        generalTempMaxRange.firstChild.nodeValue = unitConverterManageObj().celsiusToFahrenheit(
+            APIdata.days[0].tempmax,
+        );
+        generalFeelLikeTemp.firstChild.nodeValue = unitConverterManageObj().celsiusToFahrenheit(
             APIdata.currentConditions.feelslike,
         );
     }
@@ -193,8 +199,12 @@ const updateGeneralContent = (tempUnit, speedUnit, APIdata) => {
     detailsCardHumidityValue.textContent = APIdata.currentConditions.humidity;
     detailsCardWindgustValue.textContent = APIdata.currentConditions.windgust;
     detailsCardWindgustUnit.textContent = speedUnit;
-    detailsCardSunriseValue.textContent = dateTimeFormatter().getHourAndMinute(APIdata.currentConditions.sunrise);
-    detailsCardSunsetValue.textContent = dateTimeFormatter().getHourAndMinute(APIdata.currentConditions.sunset);
+    detailsCardSunriseValue.textContent = dateTimeFormatterManageObj().getHourAndMinute(
+        APIdata.currentConditions.sunrise,
+    );
+    detailsCardSunsetValue.textContent = dateTimeFormatterManageObj().getHourAndMinute(
+        APIdata.currentConditions.sunset,
+    );
 };
 
 /**
@@ -222,8 +232,8 @@ const renderWeekCards = (tempUnit, APIdata) => {
                 weekCardWrapper,
                 getWeatherIcon(data.icon),
                 data.datetime,
-                unitConverter().celsiusToFahrenheit(data.tempmin),
-                unitConverter().celsiusToFahrenheit(data.tempmax),
+                unitConverterManageObj().celsiusToFahrenheit(data.tempmin),
+                unitConverterManageObj().celsiusToFahrenheit(data.tempmax),
                 tempUnit,
             );
         }
@@ -238,7 +248,7 @@ const renderWeekCards = (tempUnit, APIdata) => {
 const renderHourCards = (tempUnit, APIdata) => {
     hourCardWrapper.innerHTML = '';
 
-    const nearestHour = dateTimeFormatter().getNearestHour(APIdata.currentConditions.datetime);
+    const nearestHour = dateTimeFormatterManageObj().getNearestHour(APIdata.currentConditions.datetime);
     // console.log({ nearestHour });   //{nearestHour: '13:00:00'}
     const verifiedNearestHour = verifyCurrentDayHasEnoughHours(nearestHour);
     // console.log({ verifiedNearestHour });   //{isPass: true, hoursNeeded: 0}
@@ -260,7 +270,7 @@ const renderHourCards = (tempUnit, APIdata) => {
                     hourCardWrapper,
                     APIdata.days[0].hours[i].datetime,
                     getWeatherIcon(APIdata.days[0].hours[i].icon),
-                    unitConverter().celsiusToFahrenheit(APIdata.days[0].hours[i].temp),
+                    unitConverterManageObj().celsiusToFahrenheit(APIdata.days[0].hours[i].temp),
                     tempUnit,
                 );
             }
@@ -280,7 +290,7 @@ const renderHourCards = (tempUnit, APIdata) => {
                     hourCardWrapper,
                     APIdata.days[1].hours[i].datetime,
                     getWeatherIcon(APIdata.days[1].hours[i].icon),
-                    unitConverter().celsiusToFahrenheit(APIdata.days[1].hours[i].temp),
+                    unitConverterManageObj().celsiusToFahrenheit(APIdata.days[1].hours[i].temp),
                     tempUnit,
                 );
             }
@@ -300,7 +310,7 @@ const renderHourCards = (tempUnit, APIdata) => {
                     hourCardWrapper,
                     APIdata.days[0].hours[i].datetime,
                     getWeatherIcon(APIdata.days[0].hours[i].icon),
-                    unitConverter().celsiusToFahrenheit(APIdata.days[0].hours[i].temp),
+                    unitConverterManageObj().celsiusToFahrenheit(APIdata.days[0].hours[i].temp),
                     tempUnit,
                 );
             }
@@ -319,7 +329,7 @@ const renderHourCards = (tempUnit, APIdata) => {
                     hourCardWrapper,
                     APIdata.days[1].hours[i].datetime,
                     getWeatherIcon(APIdata.days[1].hours[i].icon),
-                    unitConverter().celsiusToFahrenheit(APIdata.days[1].hours[i].temp),
+                    unitConverterManageObj().celsiusToFahrenheit(APIdata.days[1].hours[i].temp),
                     tempUnit,
                 );
             }
@@ -347,11 +357,11 @@ const updateWholePageContent = (tempUnit, speedUnit, APIdata) => {
     renderWeekCards(tempUnit, APIdata);
     updateBgImg(APIdata);
 
-    const isNightTheme = themeHandler().isWeatherMatchNightTheme(APIdata.currentConditions.icon);
+    const isNightTheme = themeHandlerManageObj().isWeatherMatchNightTheme(APIdata.currentConditions.icon);
     if (isNightTheme) {
-        themeHandler().changeToNightTheme();
+        themeHandlerManageObj().changeToNightTheme();
     } else {
-        themeHandler().changeToLightTheme();
+        themeHandlerManageObj().changeToLightTheme();
     }
 };
 
